@@ -172,11 +172,11 @@ The advancement in generative modelling methods over the past decade has been no
 
 
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
+<div markdown="1" class="my-side-by-side">
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 1"
@@ -187,7 +187,7 @@ The advancement in generative modelling methods over the past decade has been no
 %}
 
 </div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 2"
@@ -238,7 +238,7 @@ The quantity $\frac{\partial \phi^{-1}}{\partial y}$ is the Jacobian of the inve
 Depending on the task at hand--evaluation of likelihood or sampling--- one of the two formulation of $\eqref{eq:changevar}$ is preferred.
 
 
-<div class="my-info">
+<div markdown="1" class="my-info">
 
 Note that for $y = \phi(x)$, due to the 1-to-1 correspondance $x \overset{\phi}{\longleftrightarrow} y$, we can also write this as
 $$
@@ -254,7 +254,7 @@ This formulation is very useful during sampling as we can compute both $y = \phi
 
 
 **1D Gaussian example**
-<div class="my-success">
+<div markdown="1" class="my-success">
 
 Suppose $\phi$ is a linear function of the form
 $$
@@ -296,9 +296,9 @@ If we make the choice of $a = 1$ and $b = \mu$, then we get $\mathcal{N}(\mu, 1)
 
 > [name=Emile] Same plot but without without the solid line (i.e. jumping).
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
   <!-- alt=. -->
 {% include image.html
@@ -358,9 +358,9 @@ $$
 where unbiased estimate of the log likelihood can be obtained[^residual_flow].
 As opposed to auto-regressive flows (Huang et al., 2018, Larochelle and Murray, 2011, Papamakarios et al., 2017), and low-rank residual normalising flows (Van Den Berg et al. 2018), the update in \eqref{eq:full_rank_res} has *full rank* Jacobian, typically leading to more expressive transformations.
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 4"
@@ -473,7 +473,7 @@ Now that you know why CNFs are cool, let's have a look at what such a flow would
 
 
 #### A simple example: $u_t$ from a Gaussian to a Gaussian
-<div class="my-success">
+<div markdown="1" class="my-success">
 
 Let's come back to our earlier example of mapping a 1D Gaussian to another one with different mean.
 In contrast to previously where we derived a 'one-shot' (i.e. *discrete*) flow bridging between the two Gaussians, we now aim to derive a time-*continuous flow* $\phi_t$ which would correspond to the time integrating a vector field $u_t$.
@@ -496,9 +496,9 @@ $$
 $$
 which is visualized in the figure below.
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 5"
@@ -532,9 +532,9 @@ $$
 
 Hence we have a probability path $p_t = \mathcal{N}(\mu t, 1)$ bridging $p_0$ and $p_1$.
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 6"
@@ -639,16 +639,16 @@ Of course, this requires knowledge of a *valid* $u(t, x)$, and if we already hav
 
 This is where *Conditional* Flow Matching (CMF) comes to the rescue.
 
-<div class="my-info">
+<div markdown="1" class="my-info">
 
 We say *a valid* $u_t$ because there is no *unique* vector field $u_t$; there are indeed many valid choices for $u_t$ inducing maps $p_0 \overset{\phi}{\longleftrightarrow} p_1$ as illustrated in the [figure](#figure-forward_samples-one-color-1) below. As we will see in what follows, in practice we have to pick a particular target $u_t$, which has practical implications.
 
 </div>
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
-<div class="my-image-container">
+<div markdown="1" class="my-side-by-side">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   ref="forward_samples-one-color-1"
@@ -660,7 +660,7 @@ We say *a valid* $u_t$ because there is no *unique* vector field $u_t$; there ar
 $$ -->
 
 </div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   ref="forward_samples-one-color-2.png"
@@ -683,10 +683,10 @@ $$ -->
 </div>
 </div>
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
-<div class="my-image-container">
+<div markdown="1" class="my-side-by-side">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   ref="forward_samples-one-color-3.png"
@@ -695,7 +695,7 @@ $$ -->
 %}
 
 </div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   ref="forward_samples_ot-one-color.png"
@@ -752,8 +752,8 @@ p_0(x \mid x_1) = p_0 \quad \text{and} \quad p_1(x \mid x_1) = \mathcal{N}(x; x_
 $$
 with $\sigmamin > 0$ small, and for whatever reference $p_0$ we choose, typically something "simple" like $p_0(x) = \mathcal{N}(x; 0, I)$, as illustrated in the [figure](#figure-heatmap_with_cond_traj-v3) below.
 
-<div class="my-center">
-<div class="my-image-container">
+<div markdown="1" class="my-center">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure"
@@ -823,7 +823,7 @@ where in the $\hlone{\text{first highlighted step}}$ we used \eqref{eq:continuit
 
 
 
-<div class="my-info">
+<div markdown="1" class="my-info">
 
 
 Let's try to gain some intuition behind \eqref{eq:cf-from-cond-vf} and the relation between $u_t(x)$ and $u_t(x \mid x_1)$.
@@ -852,9 +852,9 @@ p_0 = \mathcal{N}([-\mu, 0], I) \quad & \text{and} \quad p_1 = \mathcal{N}([+\mu
 $$
 for some $\mu > 0$. We're effectively transforming a Gaussian to another Gaussian using a simple time-linear map, as illustrated in the following figure.
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure"
@@ -880,12 +880,12 @@ u_t \big( \phi_t(x_0) \big)
 $$
 In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in this specific setting we do have closed-form expressions for everything (Albergo & Boffi, 2023), and so we can visualise the marginal vector field $u_t\big( \phi_t(x_0)\big)$ and the conditional vector fields $u_t \big( \phi_t(x_0) \mid x_1^{(i)} \big)$ for all our "data" samples $x_1^{(i)}$ and see how they compare. This is shown in the figure below.
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
 
-<div class="my-side-by-side">
+<div markdown="1" class="my-side-by-side">
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   ref="g2g-vector-field-samples-with-traj-single-2.png"
@@ -895,7 +895,7 @@ In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in thi
 
 </div>
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   ref="g2g-vector-field-samples-with-traj-single-1.png"
@@ -989,8 +989,8 @@ As a result both endpoints constraint are satisfied since ones recovers
 - at $t=1$ the data distribution $p_1(x) = \int p_1(x|x_1) q_1(x_1) \mathrm{d} x_1 = \int \mathrm{N}(x_1, \sigma^2) q_1(x_1) \mathrm{d} x_1 \xrightarrow[\sigma \rightarrow 0]{} q_1(x)$
 - at $t=0$ the reference distribution $p_0(x) = \int p_0(x|x_1) q_1(x_1) \mathrm{d} x_1 = \int q_0(x) q_1(x_1) \mathrm{d} x_1 = q_0(x)$.
 
-<div style="display: flex; margin-top:-0px; margin-bottom:-0px;">
-<div style="margin: auto;">
+<div markdown="1" style="display: flex; margin-top:-0px; margin-bottom:-0px;">
+<div markdown="1" style="margin: auto;">
 
 ![cond_ut](https://hackmd.io/_uploads/HyLrNEWSa.jpg =200x)
 </div>
@@ -1096,7 +1096,7 @@ The simplest solution to the above is then just
 </details>
 
 #### Example: Linear interpolation
-<div class="my-success">
+<div markdown="1" class="my-success">
 
 A simple choice for the mean $\mu_t(x_1)$ and std. $\sigma_t(x_1)$ is the linear interpolation for both, i.e.
 $$
@@ -1129,11 +1129,11 @@ $$
 
 Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(x_0 \mid x_1)$ (bottom figure) for pairs $(x_0, x_1)$ with $x_0 \sim p_0$ and $x_1 = \phi_t(x_0)$. The paths are coloured by the sign of the 2nd vector component of $x_0$ to more clearly highlight the difference between the marginal and conditional flows.
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
+<div markdown="1" class="my-side-by-side">
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 8"
@@ -1145,7 +1145,7 @@ Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(
 
 </div>
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 9"
@@ -1165,10 +1165,10 @@ Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(
 
 
 <!-- 
-<div class="my-success">
+<div markdown="1" class="my-success">
 The _conditional_ vector field is the OT map!
 </div>
-<div class="my-warning">
+<div markdown="1" class="my-warning">
 Does not guarantee that the _marginal_ vector field is the OT map!
 </div>
 -->
@@ -1190,7 +1190,7 @@ remove diffusion vf
 ### (conditional) OT vf
 - $\mu_t = t x_1$ and $\sigma_t = 1 - t = (1 - (1 - \sigma_{\min})t$
 - $u_t(x|x_1) = \frac{1}{1 - t}(x_1 - x) = \frac{1}{1 - (1 - \sigma_\min)t}(x_1 - (1 - \sigma_\min)x)$
-<div class="my-warning">
+<div markdown="1" class="my-warning">
 Does not guarantee that the _marginal_ vector field is the OT map!
 </div>
 
@@ -1217,12 +1217,12 @@ result in paths that are quite different from the marginal paths as illustrated 
 
 > [name=emilem]  Gausian to gausian example instead
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
+<div markdown="1" class="my-side-by-side">
 
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 10"
@@ -1237,7 +1237,7 @@ result in paths that are quite different from the marginal paths as illustrated 
 </div>
 
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 11"
@@ -1271,11 +1271,11 @@ In such a scenario, we're attempting to align $u_{\theta}(t, x)$ with two differ
 In slightly more complex scenarios, the situation becomes even more striking. Below we see a nice example from Lie et al. (2022) where our reference and target are two different mixture of Gaussians in 2D. Here we see that marginal paths (bottom figure) end up looking *very* different from the conditional paths (top figure). Indeed, at training time paths may intersect, whilst at sampling time they cannot (due to the uniqueness of the ODE solution). As such we see on the bottom plot that some (marginal) paths are quite curved and would therefore require a greater number of discretisation steps from the ODE solver during inference.
 
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
+<div markdown="1" class="my-side-by-side">
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 12"
@@ -1287,7 +1287,7 @@ In slightly more complex scenarios, the situation becomes even more striking. Be
 <!-- ![vector-field-samples-cond](https://hackmd.io/_uploads/SyG9OF_IT.png) -->
 </div>
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 13"
@@ -1308,11 +1308,11 @@ We can also see how this leads to a significant variance of the CFM loss estimat
 More generally, samples from the reference distribution which are arbitrarily close to eachothers can be associated with either target modes, leading to high variance in the vector field regression loss.
 
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
+<div markdown="1" class="my-side-by-side">
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 14"
@@ -1325,7 +1325,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 
 </div>
 
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 15"
@@ -1357,16 +1357,16 @@ There are two immediate consequences:
 2. At training time, noise samples which are arbitrarily close by can be associated with either data modes, and as such lead to high variance in the vector field regression loss.
 
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-side-by-side">
-<div class="my-image-container">
+<div markdown="1" class="my-side-by-side">
+<div markdown="1" class="my-image-container">
 
 ![forward_samples](https://hackmd.io/_uploads/SyG9OF_IT.png)
 *Interpolation path $\phi(x_t|x_0,x_1)$*.
 
 </div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 ![forward_samples](https://hackmd.io/_uploads/SJusOFuL6.png)
 *Inference path $\phi(x_t|x_0)$*.
@@ -1382,8 +1382,8 @@ Figure: *Independent coupling $q(x_0, x_1) = q(x_0)q(x_1)$.*
 </div>
 
 <!--  -->
-<!-- <div style="display: flex; margin-top:-10px; margin-bottom:-10px;">
-<div style="margin: auto;">
+<!-- <div markdown="1" style="display: flex; margin-top:-10px; margin-bottom:-10px;">
+<div markdown="1" style="margin: auto;">
 
 ![cond_ut](https://hackmd.io/_uploads/H1_jkEjB6.jpg =400x)
 </div>
@@ -1401,9 +1401,9 @@ e.g. $\ p(x_t | x_1) = \mathrm{N}(x_t|tx_1, (1-t)^2)$.
 
 
 
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 16"
@@ -1420,24 +1420,22 @@ e.g. $\ p(x_t | x_1) = \mathrm{N}(x_t|tx_1, (1-t)^2)$.
 Yet, more generally, we can consider conditioning and marginalising over latent variables $z$, and minimising the following loss:
 $$\mathcal{L}_{\mathrm{CFM}}(\theta) = \mathbb{E}_{(t,z,x_t) \sim \mathcal{U}[0,1] q(z) p(\cdot|z)}[\| u_\theta(t, x_t) - u_t(x_t|z)\|^2].$$
 
- As suggested in Liu et al. (2023), Tong et al. (2023), Albergo et al. (2023) and Pooladian et al. (2023) one can condition on *both* endpoints $z=(x_1, x_0)$ of the process, referred as *two-sided conditioning*. The marginal probability path is defined as:
+As suggested in Liu et al. (2023), Tong et al. (2023), Albergo et al. (2023) and Pooladian et al. (2023) one can condition on *both* endpoints $z=(x_1, x_0)$ of the process, referred as *two-sided conditioning*. The marginal probability path is defined as:
 $$
 p_t(x_t) = \int p_t(x_t \mid z) q(z) \dd{z} = \int p_t(x_t \mid x_1, x_0) q(x_1, x_0) \dd{x_1} \dd{x_0}.
 $$
 
-<div class="my-info">
+<div markdown="1" class="my-info">
 
-The following boundary condition on $p_t(x_t|x_1, x_0)$: $p_0(\cdot|x_1, x_0)=\delta_{x_0}$ and $p_1(\cdot|x_1, x_0)=\delta_{x_1}$ is required so that the marginal has the proper conditions $p_0 = q_0$ and $p_1 = q_1$.
+The following boundary condition on $p_t(x_t \mid x_1, x_0)$: $p_0(\cdot \mid x_1, x_0)=\delta_{x_0}$ and $p_1(\cdot \mid x_1, x_0) = \delta_{x_1}$ is required so that the marginal has the proper conditions $p_0 = q_0$ and $p_1 = q_1$.
 
 </div>
 
-For instance, a deterministic linear interpolation gives $p(x_t | x_0, x_1) = \delta_{(1-t)x_0 + t x_1}(x_t)$
- and the simplest choice regarding the coupling $z=(x_1, x_0)$ is the consider independent samples: $q(x_1, x_0) =q_1(x_1) q_0(x_0)$.
+For instance, a deterministic linear interpolation gives $p(x_t \mid x_0, x_1) = \delta_{(1-t)} x_0 + t x_1(x_t)$ and the simplest choice regarding the coupling $z = (x_1, x_0)$ is the consider independent samples: $q(x_1, x_0) = q_1(x_1) q_0(x_0)$.
 
-
-<div class="my-center">
+<div markdown="1" class="my-center">
 <div>
-<div class="my-image-container">
+<div markdown="1" class="my-image-container">
 
 {% include image.html
   name="Figure 17"
@@ -1482,10 +1480,11 @@ The OT coupling $\pi$ associates samples $x_0$ and $x_1$ such that the total dis
 This OT coupling is illustrated in the right hand side of the figure below. In contrast to the middle figure which an independent coupling, the OT one does not have paths that cross. This leads to lower training variance and faster sampling[^OT].
 
 
-<div style="display: flex; margin-top:0px; margin-bottom:0px;">
-<div style="margin: auto;">
+<div markdown="1" style="display: flex; margin-top:0px; margin-bottom:0px;">
+<div markdown="1" style="margin: auto;">
 
 ![cond_ut](https://hackmd.io/_uploads/Hk9CoIzSp.jpg =700x)
+
 </div>
 </div>
 
