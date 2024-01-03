@@ -257,24 +257,32 @@ This formulation is very useful during sampling as we can compute both $y = \phi
 <div markdown="1" class="my-success">
 
 Suppose $\phi$ is a linear function of the form
+
 $$
 \phi(x) = ax+b
 $$
+
 with scalar coefficients $a,b\in\mathbb{R}$, and $p$ to be Gaussian with mean $\mu$ and variance $\sigma^2$, i.e.
+
 $$
 p = \mathcal{N}(\mu, \sigma^2).
 $$
+
 We know from linearity of Gaussians that the induced $q$ will also be Gaussian distribution but with mean $a\mu+b$ and variance $a^2 \sigma^2$, i.e.
+
 $$
 q = \mathcal{N}(a \mu + b, a^2 \sigma^2).
 $$
+
 More interestingly, though, is to verify that we obtain the same solution by applying the change-of-variable formula.
 The inverse map is given by
+
 $$
 \phi^{-1}(y) \mapsto \frac{y-b}{a}
 $$
-and it's derivative w.r.t. $y$ is thus $1/a$ assuming scalar inputs.
-We thus obtain
+
+and it's derivative w.r.t. $y$ is thus $1/a$ assuming scalar inputs. We thus obtain
+
 $$
 \begin{align*}
 q(y) &= p\bigg(\frac{y-b}{a}\bigg) \frac{1}{a} \\
@@ -287,7 +295,7 @@ $$
 
 We have thus verified that the change-of-variables formula can be used to compute the density of a Gaussian variable tranformed by a linear mapping.
 
-Often, to simplify notation, we will use the 'push-forward' operator $[\phi]_{\#}$ to denote the change in density of applying an invertible map $\phi$ to an input density. That is
+Often, to simplify notation, we will use the 'push-forward' operator $[\phi]_{\\#}$ to denote the change in density of applying an invertible map $\phi$ to an input density. That is
 $$
 q(y) = ([\phi]_{\#} p)(y) = p\big(\phi^{-1}(y)\big) \det\left[\frac{\partial \phi^{-1}}{\partial y}(y)\right].
 $$
@@ -395,25 +403,32 @@ with $x_k = \phi_K^{-1} \circ \ldots \circ \phi^{-1}_{k} (y)$.
 As mentioned previously, residual flows are transformations of the form
 $\phi(x) = x + \delta \ u(x)$
 for some $\delta > 0$ and Lipschitz residual connection $u$. We can re-arrange this to get
+
 $$
 \begin{equation}
 \frac{\phi(x) - x}{\delta} = u(x)
 \end{equation}
 $$
+
 which is looking awfully similar to $u$ being a derivative. In fact, letting $\delta = 1/K$ and taking the limit $K \rightarrow \infty$ under certain conditions[^ODE_conditions], a composition of residual flows $\phi_K \circ \cdots \circ \phi_2 \circ \phi_1$ is given by an ordinary differential equation (ODE):
+
 $$
 \begin{equation}
 \frac{\dd x_t}{\dd t} = \lim_{\delta \rightarrow 0} \frac{x_{t+\delta} - x_t}{\delta} = \frac{\phi_t(x_t) - x_t}{\delta} = u_t(x_t)
 \end{equation}
 $$
+
 where the *flow* of the ODE $\phi_t: [0,1]\times\mathbb{R}^d\rightarrow\mathbb{R}^d$ is defined such that
+
 $$
 \begin{equation}
 \frac{d\phi_t}{dt} = u_t(\phi_t(x_0)).
 \end{equation}
 $$
+
 <!--  -->
 That is, $\phi_t$ maps initial condition $x_0$ to the ODE solution at time $t$:
+
 $$
 \begin{equation}
 x_t \triangleq \phi_t(x_0) = x_0 + \int_{0}^t u_s(x_s) \dd{s} .
@@ -426,17 +441,20 @@ $$
 Of course, this only defines the map $\phi_t(x)$; for this to be a useful normalizing flow, we still need to compute the log-abs-determinant of the Jacobian!
 
 As it turns out, the pdf induced by $\phi_t$ (or equivalently $u_t$) can be computed via the following equation[^FPE]
+
 $$
 \begin{equation}
 \frac{\partial}{\partial_t} p_t(x_t) 
 = - (\nabla \cdot (u_t p_t))(x_t).
 \end{equation}
 $$
+
 <!-- for some initial distribution $p_0$. -->
 This statement on the time-evolution of $p_t$ is generally known as the *Continuity Equation* or *Transport Equation*. We refer to $p_t$ as the probability path induced by $u_t$.
 
 <!-- We can also rewrite this in log-space[^log_pdf]  -->
 Computing the *total* derivative (as $x_t$ also depends on $t$) in log-space yields[^log_pdf] 
+
 $$
 \begin{equation}
 \frac{\dd}{\dd t} \log p_t(x_t) = - (\nabla \cdot u_t)(x_t)
@@ -444,6 +462,7 @@ $$
 $$
 
 resulting in the log density
+
 $$
 \begin{equation}
 \log p_t(x) = \log p_0(x_0) - \int_0^t (\nabla \cdot u_s)(x_s) \dd{s}.
@@ -451,9 +470,13 @@ $$
 $$
 
 Parameterising a vector field neural network $u_\theta: \mathbb{R}_+ \times \mathbb{R^d} \rightarrow \mathbb{R^d}$ therefore induces a parametric log-density 
-$$\log p_\theta(x) \triangleq \log p_1(x) = \log p_0(x_0) - \int_0^1 (\nabla \cdot u_\theta)(x_t) \dd t.$$
+
+$$
+\log p_\theta(x) \triangleq \log p_1(x) = \log p_0(x_0) - \int_0^1 (\nabla \cdot u_\theta)(x_t) \dd t.
+$$
 
 In practice, both the time evolution of $x_t$ and its log density $\log p_t$ are solved jointly
+
 $$
 \begin{equation}
 \frac{\dd}{\dd t} \Biggl( \begin{aligned} x_t \ \quad \\ \log p(x_t) \end{aligned} \Biggr) = \Biggl( \begin{aligned} u_\theta(t, x_t) \quad \\ - \div u_\theta(t, x_t) \end{aligned} \Biggr).
@@ -522,8 +545,7 @@ $$
 \mathbb{E}_{p_0}[\phi_t(x_0)] = \mu t
 \end{equation}
 $$
-
-which, in particular, implies that $\mathbb{E}_{p_0}[\phi_1(x_0)] = \mu = \mathbb{E}_{p_1}[x_1]$. Similarly, we have
+which, in particular, implies that $\mathbb{E}_{p_0}[\phi_1(x_0)] = \mu = \mathbb{E}\_{p_1}[x_1]$. Similarly, we have
 $$
 \begin{equation}
 \mathrm{Var}_{p_0}[\phi_t(x_0)] = 1 \quad \implies \quad \mathrm{Var}_{p_0}[\phi_1(x_0)] = 1 = \mathrm{Var}_{p_1}[x_1]
@@ -707,7 +729,7 @@ $$ -->
 </div>
 <div>
 
-<p class="caption">
+<p markdown="1" class="caption">
 Figure : *Different paths with the same endpoints marginals[^interpolation].*
 </p>
 <!-- $p_0 = p_1 = \mathcal{N}(0, I)$.* -->
@@ -840,10 +862,10 @@ $$
 assuming we could compute the weights $\frac{p_t(x \mid x_1^{(i)})}{p_t(x)}$, we could use importance sampling (IS) to estimate $u_t(x)$ from $u_t(x \mid x_1)$ and samples from $p_1$. In effect, the IS weight $\frac{p_t(x \mid x_1^{(i)})}{p_t(x)}$ tells us how important the sample $x_1^{(i)}$ is for estimating $u_t(x)$.
 To gain some intuition as to what this estimator looks like, let's look the following scenario
  -->
-<!-- \label{eq:g2g} -->
 $$
 \begin{equation}
 \tag{G-to-G}
+\label{eq:g2g}
 \begin{split}
 p_0 = \mathcal{N}([-\mu, 0], I) \quad & \text{and} \quad p_1 = \mathcal{N}([+\mu, 0], I) \\
 \text{with} \quad \phi_t(x_0 \mid x_1) &= (1 - t) x_0 + t x_1
@@ -909,7 +931,7 @@ In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in thi
 
 <div>
 
-<p class="caption">
+<p markdown="1" class="caption">
 Figure 7: *Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.*
 </p>
 <!-- their importance weight $p_t(x \mid x_1) q(x_1) / p_t(x)$. -->
@@ -933,7 +955,7 @@ u_\theta(t, x) - u(t, x) \|^2 \right],
 \end{align}
 $$
 
-where  $u_t(x) = {\mathbb{E}}_{x_1 \sim p_{1 \mid t}} \left[ u_t(x \mid x_1) \right]$, 
+where  $u_t(x) = \mathbb{E}\_{x_1 \sim p_{1 \mid t}} \left[ u_t(x \mid x_1) \right]$, 
 with an equivalent loss regressing the *conditional* vector field $u_t(x \mid x_1)$ and marginalising $x_1$ instead:
 $$
 \begin{equation}
@@ -960,8 +982,8 @@ $$
 \begin{align}
 \mathbb{E}_{x \sim p_t} ~\langle u_\theta(t, x), \hltwo{u_t(x)} \rangle 
 &= \int \langle u_\theta(t, x), \hltwo{\int} u_t(x|x_1) \hltwo{\frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1} \rangle p_t(x) \mathrm{d} x \\
-&= \int \langle u_\theta(t, x), \int u_t(x|x_1) p_t(x|x_1)q(x_1) dx_1 \rangle \mathrm{d} x \\
-&= \int \int \langle u_\theta(t, x), u_t(x|x_1) \rangle p_t(x|x_1)q(x_1) dx_1 \mathrm{d} x \\
+&= \int \langle u_\theta(t, x), \int u_t(x|x_1) p_t(x|x_1)q(x_1) dx_1 \rangle \dd{x} \\
+&= \int \int \langle u_\theta(t, x), u_t(x|x_1) \rangle p_t(x|x_1)q(x_1) dx_1 \dd{x} \\
 &= \mathbb{E}_{q_1(x_1) p(x|x_1)} ~\langle u_\theta(t, x), u_t(x|x_1) \rangle
 \end{align}
 $$
@@ -983,11 +1005,11 @@ We note that, as opposed to the log-likelihood maximisation loss of CNFs which d
 
 To do so we construct a _probability path_ $p_t$ which interpolates between the reference (i.e. noise) distribution $q_0$ and the data distribution $q_1$, i.e. $p_{t=0}=q_0$ and $p_{t=1}=q_1 * \mathrm{N}(0, \sigma^2)$.
 
-Lipman et al. (2023) achieves this by constructing $p_t$ as mixture of simpler probability paths: $p_t \triangleq \int p_t(\cdot|x_1) q_1(x_1) \mathrm{d} x_1$, via a _conditional probability path_ $p_t(\cdot|x_1)$ satisfying $p_1(\cdot|x_1)=\mathrm{N}(x_1, \sigma^2) \xrightarrow[\sigma \rightarrow 0]{} \delta_{x_1}$ and $p_0(\cdot|x_1)=p_0$.
+Lipman et al. (2023) achieves this by constructing $p_t$ as mixture of simpler probability paths: $p_t \triangleq \int p_t(\cdot|x_1) q_1(x_1) \dd{x}_1$, via a _conditional probability path_ $p_t(\cdot|x_1)$ satisfying $p_1(\cdot|x_1)=\mathrm{N}(x_1, \sigma^2) \xrightarrow[\sigma \rightarrow 0]{} \delta_{x_1}$ and $p_0(\cdot|x_1)=p_0$.
 
 As a result both endpoints constraint are satisfied since ones recovers
-- at $t=1$ the data distribution $p_1(x) = \int p_1(x|x_1) q_1(x_1) \mathrm{d} x_1 = \int \mathrm{N}(x_1, \sigma^2) q_1(x_1) \mathrm{d} x_1 \xrightarrow[\sigma \rightarrow 0]{} q_1(x)$
-- at $t=0$ the reference distribution $p_0(x) = \int p_0(x|x_1) q_1(x_1) \mathrm{d} x_1 = \int q_0(x) q_1(x_1) \mathrm{d} x_1 = q_0(x)$.
+- at $t=1$ the data distribution $p_1(x) = \int p_1(x|x_1) q_1(x_1) \dd{x}_1 = \int \mathrm{N}(x_1, \sigma^2) q_1(x_1) \dd{x}_1 \xrightarrow[\sigma \rightarrow 0]{} q_1(x)$
+- at $t=0$ the reference distribution $p_0(x) = \int p_0(x|x_1) q_1(x_1) \dd{x}_1 = \int q_0(x) q_1(x_1) \dd{x}_1 = q_0(x)$.
 
 <div markdown="1" style="display: flex; margin-top:-0px; margin-bottom:-0px;">
 <div markdown="1" style="margin: auto;">
@@ -1096,16 +1118,20 @@ The simplest solution to the above is then just
 </details>
 
 #### Example: Linear interpolation
+
 <div markdown="1" class="my-success">
 
 A simple choice for the mean $\mu_t(x_1)$ and std. $\sigma_t(x_1)$ is the linear interpolation for both, i.e.
+
 $$
 \begin{align*}
 \hlone{\mu_t(x_1)} &\triangleq t x_1 \quad &\text{and} \quad \hlthree{\sigma_t(x_1)} &\triangleq (1 - t) + t \sigmamin \\
 \hltwo{\dot{\mu}_t(x_1)} &\triangleq x_1 \quad &\text{and} \quad \hlfour{\dot{\sigma}_t(x_1)} &\triangleq -1 + \sigmamin
 \end{align*}
 $$
+
 so that
+
 $$
 \begin{equation}
 \big( \hlone{\mu_0(x_1)} + \hlthree{\sigma_0(x_1)} x_1 \big) \sim p_0 \quad \text{and} \quad \big( \hlone{\mu_1(x_1)} + \hlthree{\sigma_1(x_1)} x_1 \big) \sim \mathcal{N}(x_1, \sigmamin^2 I)
@@ -1182,8 +1208,8 @@ Does not guarantee that the _marginal_ vector field is the OT map!
 remove diffusion vf
 </div>
 ### (conditional) diffusion vf
-- $dx_t = -\frac{1}{2}\sqrt{\beta(t)} x_t \mathrm{d} t + \beta(t) \mathrm{d} B_t$
-- $\alpha_t = e^{-\frac{1}{2}\int_0^t \beta(s) \mathrm{d} s}$
+- $dx_t = -\frac{1}{2}\sqrt{\beta(t)} x_t \dd{t} + \beta(t) \dd{B}_t$
+- $\alpha_t = e^{-\frac{1}{2}\int_0^t \beta(s) \dd{s}}$
 - $\mu_t = \alpha_{1-t} x_1$ and $\sigma_t^2 = 1 - \alpha_{1-t}^2$
 - $u_t(x|x_1) = -\frac{\sigma'_{1-t}}{\sigma_{1-t}}(x - x_1)$
 
@@ -1631,14 +1657,16 @@ Taking the expectation over the last inner product term:
 $$
 \begin{align}
 \mathbb{E}_{x \sim p_t} ~\langle u_\theta(t, x), u_t(x) \rangle 
-&= \int \langle u_\theta(t, x), \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1 \rangle p_t(x) \mathrm{d} x \\
-&= \int \langle u_\theta(t, x), \int u_t(x|x_1) p_t(x|x_1)q(x_1) dx_1 \rangle \mathrm{d} x \\
-&= \int \int \langle u_\theta(t, x), u_t(x|x_1) \rangle p_t(x|x_1)q(x_1) dx_1 \mathrm{d} x \\
+&= \int \langle u_\theta(t, x), \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1 \rangle p_t(x) \dd{x} \\
+&= \int \langle u_\theta(t, x), \int u_t(x|x_1) p_t(x|x_1)q(x_1) dx_1 \rangle \dd{x} \\
+&= \int \int \langle u_\theta(t, x), u_t(x|x_1) \rangle p_t(x|x_1)q(x_1) dx_1 \dd{x} \\
 &= \mathbb{E}_{q_1(x_1) p(x|x_1)} ~\langle u_\theta(t, x), u_t(x|x_1) \rangle.
 \end{align}
 $$
 Then we see that the neural network squared norm terms are equal since:
-$$\mathbb{E}_{p_t} \|u_\theta(t, x)\|^2 = \int \|u_\theta(t, x)\|^2 p_t(x|x_1) q(x_1) \dd{x} \dd{x_1} = \mathbb{E}_{q_1(x_1) p(x|x_1)} \|u_\theta(t, x)\|^2$$
+$$
+\mathbb{E}_{p_t} \|u_\theta(t, x)\|^2 = \int \|u_\theta(t, x)\|^2 p_t(x|x_1) q(x_1) \dd{x} \dd{x_1} = \mathbb{E}_{q_1(x_1) p(x|x_1)} \|u_\theta(t, x)\|^2
+$$
 
 [^ODE_conditions]: A sufficient condition for $\phi_t$ to be invertible is for $u_t$ to be Lipschitz and continuous by Picard–Lindelöf theorem.
 
@@ -1648,7 +1676,9 @@ $$\mathbb{E}_{p_t} \|u_\theta(t, x)\|^2 = \int \|u_\theta(t, x)\|^2 p_t(x|x_1) q
 [^hutchinson]: The Skilling-Hutchinson trace estimator is  given by $\Tr(A) = \E[v^\top A v]$ with $v \sim p$ isotropic and centred. In our setting we are interested in $\div(u_t)(x) = \Tr(\frac{\partial u_t(x)}{\partial x}) = \E[v^\top \frac{\partial u_t(x)}{\partial x} v]$ which can be approximated with a Monte-Carlo estimator, where the integrand is computed via automatic forward or backward differentiation.
 
 [^OT]: Dynamic optimal transport [Benamou and Brenier, 2000]
-$W(q_0, q_1)_2^2 = \inf_{p_t, u_t} \int \int_0^1  \|u_t(x)\|^2 p_t(x) \mathrm{d} t \mathrm{d} x$
+$$
+W(q_0, q_1)_2^2 = \inf_{p_t, u_t} \int \int_0^1  \|u_t(x)\|^2 p_t(x) \dd{t} \dd{x}
+$$
 
 [^1]: There's also the difference that in (standard) score-based diffusion models, we don't have "exact endpoints" in the sense that our $p_0$ is actually the reference we use during inference. Instead, we "just hope" that the chosen integration time $T$ is sufficiently large so that $p_0 \approx q_0$.
 
