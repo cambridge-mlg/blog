@@ -829,6 +829,7 @@ $$
 Writing out the left-hand side, we have
 
 $$
+\begin{equation*}
 \begin{split}
   \pdv{\hlthree{p_t(x)}}{t} &= \pdv{t} \int p_t(x \mid x_1) q(x_1) \dd{x_1} \\
   &= \int \hlone{\pdv{t} \big( p_t(x \mid x_1) \big)} q(x_1) \dd{x_1} \\
@@ -839,6 +840,7 @@ $$
   &= - \nabla \cdot \bigg( \hltwo{\int u_t(x \mid x_1) \frac{p_t(x \mid x_1) q(x_1)}{p_t(x)} \dd{x_1}} \ \hlthree{p_t(x)} \bigg) \\
   &= - \nabla \cdot \big( \hltwo{u_t(x)} \hlthree{p_t(x)} \big)
 \end{split}
+\end{equation*}
 $$
 
 where in the $\hlone{\text{first highlighted step}}$ we used \eqref{eq:continuity-cond} and in the $\hltwo{\text{last highlighted step}}$ we used the expression of $u_t(x)$ in \eqref{eq:cf-from-cond-vf}.
@@ -1064,10 +1066,12 @@ We have
       $$
 First note that the LHS is
       $$
+      \begin{equation*}
       \begin{split}
         \frac{\dd{}}{\dd{} t} \phi_t(x) &= \frac{\dd{}}{\dd{} t} \bigg( \mu_t(x_1) + \sigma_t(x_1) x \bigg) \\
         &= \dot{\mu_t}(x_1) + \dot{\sigma_t}(x_1) x
       \end{split}
+      \end{equation*}
       $$
       so we have
       $$
@@ -1144,13 +1148,16 @@ $$
 In addition, letting $p_0 = \mathcal{N}([-\mu, 0], I)$ and $p_1 = \mathcal{N}([+\mu, 0], I)$ for some $\mu > 0$, we're back to the \ref{eq:g2g} example from earlier.
 
 We can then plug this choice of $\mu_t(x_1)$ and $\sigma_t(x_1)$ into \eqref{eq:gaussian-path} to obtain the conditional vector field, writing $\hlthree{\sigma_t(x_1)} = 1 - (1 - \sigmamin) t$ to make our lives simpler,
+
 $$
+\begin{equation*}
 \begin{split}
 u_t(x \mid x_1) &= \frac{\hlfour{- (1 - \sigmamin)}}{\hlthree{1 - (1 - \sigmamin) t}} (x - \hlone{t x_1}) + \hltwo{x_1} \\
 &= \frac{1}{(1 - t) + t \sigmamin} \bigg( - (1 - \sigmamin) (x - t x_1) + \big(1 - (1 - \sigmamin) t \big) x_1 \bigg) \\
 &= \frac{1}{(1 - t) + t \sigmamin} \bigg( - (1 - \sigmamin) x + x_1 \bigg) \\
 &= \frac{x_1 - (1 - \sigmamin) x}{1 - (1 - \sigmamin) t}.
 \end{split}
+\end{equation*}
 $$
 
 Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(x_0 \mid x_1)$ (bottom figure) for pairs $(x_0, x_1)$ with $x_0 \sim p_0$ and $x_1 = \phi_t(x_0)$. The paths are coloured by the sign of the 2nd vector component of $x_0$ to more clearly highlight the difference between the marginal and conditional flows.
@@ -1232,11 +1239,14 @@ Unfortunately not, no. There are two issues arising from *crossing conditional p
 2. Many possible $x_1$ for a noised $x_t$ $\Rightarrow$ high CFM loss variance $\Rightarrow$ slow training convergence.
 
 To get a better understanding of what these two points above, let's revisit the \ref{eq:g2g} example once more. As we see in the figures below, realizations of the conditional vector field $u_t(x \mid x_1)$, i.e. sampling from the process
+
 $$
+\begin{equation*}
 \begin{split}
 x_1 & \sim q \\
 x_t & \triangleq \phi_t(x \mid x_1)
 \end{split}
+\end{equation*}
 $$
 
 result in paths that are quite different from the marginal paths as illustrated in the figures below.
@@ -1606,67 +1616,66 @@ Please cite us as:
 
 
 
-# Footnotes
 
 [^chainrule]: The property $\phi \circ \phi^{-1} = \Id$ implies, by the chain rule,
-$$
-\begin{equation}
-\pdv{\phi}{x} \bigg|_{x = \phi^{-1}(y)} \pdv{\phi^{-1}}{y} \bigg|_{y} = 0 \iff \pdv{\phi}{x} \bigg|_{x = \phi^{-1}(y)} = \bigg( \pdv{\phi^{-1}}{y} \bigg|_{y} \bigg)^{-1} \quad \forall y \in \mathbb{R}^d
-\end{equation}
-$$
+              $$
+              \begin{equation}
+              \pdv{\phi}{x} \bigg|_{x = \phi^{-1}(y)} \pdv{\phi^{-1}}{y} \bigg|_{y} = 0 \iff \pdv{\phi}{x} \bigg|_{x = \phi^{-1}(y)} = \bigg( \pdv{\phi^{-1}}{y} \bigg|_{y} \bigg)^{-1} \quad \forall y \in \mathbb{R}^d
+              \end{equation}
+              $$
 
 [^jac_structure]: **Autoregressive** (Papamakarios et al., 2018; Huang et al., 2018)
-One strategy is to factor the flow's Jacobian to have a triangular structure by factorising the density as $p_\theta(x) = \prod_{d} p_\theta(x_d;x_{d<})$ with each conditional $p_\theta(x_d;x_{d<})$ being induced via a flow.
-**Low rank residual** (Van Den Berg et al., 2018)
-Another approach is to construct a flow via a residual connection:
-$$
-\begin{equation}
-\phi(x) = x + A h(B x + b)
-\end{equation}
-$$
-with parameters $A \in \R^{d\times m}$, $B \in \R^{ m\times m}$ and $b \in \R^m$. Leveraging Sylvester's determinant identity $\det(I_d + AB)=\det(I_m + BA)$, the determinant computation can be reduced to one of a $m \times m$ matrix which is advantageous if $m \ll d$.
+                  One strategy is to factor the flow's Jacobian to have a triangular structure by factorising the density as $p_\theta(x) = \prod_{d} p_\theta(x_d;x_{d<})$ with each conditional $p_\theta(x_d;x_{d<})$ being induced via a flow.
+                  **Low rank residual** (Van Den Berg et al., 2018)
+                  Another approach is to construct a flow via a residual connection:
+                  $$
+                  \begin{equation}
+                  \phi(x) = x + A h(B x + b)
+                  \end{equation}
+                  $$
+                  with parameters $A \in \R^{d\times m}$, $B \in \R^{ m\times m}$ and $b \in \R^m$. Leveraging Sylvester's determinant identity $\det(I_d + AB)=\det(I_m + BA)$, the determinant computation can be reduced to one of a $m \times m$ matrix which is advantageous if $m \ll d$.
 
 [^residual_flow]: A sufficient condition for $\phi_k$ to be invertible is for $u_k$ to be $1/h$-Lipschitz [Behrmann et al., 2019].
-The inverse $\phi_k^{-1}$ can be approximated via ﬁxed-point iteration [Chen et al., 2019]..
+                  The inverse $\phi_k^{-1}$ can be approximated via ﬁxed-point iteration [Chen et al., 2019]..
 
 [^log_pdf]: Expanding the divergence in the _continuity equation_ we have:
-$$
-\begin{equation}
-\frac{\partial}{\partial_t} p_t(x_t) 
-= - (\nabla \cdot (u_t p_t))(x_t) 
-= - p_t(x_t) (\nabla \cdot u_t)(x_t) - \langle \nabla_{x_t} p_t(x_t), u_t(x_t) \rangle.
-\end{equation}
-$$
-Yet since $x_t$ also depends on $t$, to get the _total derivative_ we have
-$$
-\begin{align}
-\frac{\dd}{\dd t} p_t(x_t) 
-&= \frac{\partial}{\partial_t} p_t(x_t) + \langle \nabla_{x_t} p_t(x_t), \frac{\dd}{\dd t} x_t \rangle \\
-&= - p_t(x_t) (\nabla \cdot u_t)(x_t) - \langle \nabla_{x_t} p_t(x_t), u_t(x_t) \rangle + \langle \nabla_{x_t} p_t(x_t), \frac{\dd}{\dd t} x_t \rangle \\
-&= - p_t(x_t) (\nabla \cdot u_t)(x_t).
-\end{align}
-$$
-Where the last step comes from $\frac{\dd}{\dd t} x_t = u_t$.
-Hence, $\frac{\dd}{\dd t} \log p_t(x_t) = \frac{1}{p_t(x_t)} \frac{\dd}{\dd t} p_t(x_t) = - (\nabla \cdot u_t)(x_t).$
+            $$
+            \begin{equation}
+            \frac{\partial}{\partial_t} p_t(x_t) 
+            = - (\nabla \cdot (u_t p_t))(x_t) 
+            = - p_t(x_t) (\nabla \cdot u_t)(x_t) - \langle \nabla_{x_t} p_t(x_t), u_t(x_t) \rangle.
+            \end{equation}
+            $$
+            Yet since $x_t$ also depends on $t$, to get the _total derivative_ we have
+            $$
+            \begin{align}
+            \frac{\dd}{\dd t} p_t(x_t) 
+            &= \frac{\partial}{\partial_t} p_t(x_t) + \langle \nabla_{x_t} p_t(x_t), \frac{\dd}{\dd t} x_t \rangle \\
+            &= - p_t(x_t) (\nabla \cdot u_t)(x_t) - \langle \nabla_{x_t} p_t(x_t), u_t(x_t) \rangle + \langle \nabla_{x_t} p_t(x_t), \frac{\dd}{\dd t} x_t \rangle \\
+            &= - p_t(x_t) (\nabla \cdot u_t)(x_t).
+            \end{align}
+            $$
+            Where the last step comes from $\frac{\dd}{\dd t} x_t = u_t$.
+            Hence, $\frac{\dd}{\dd t} \log p_t(x_t) = \frac{1}{p_t(x_t)} \frac{\dd}{\dd t} p_t(x_t) = - (\nabla \cdot u_t)(x_t).$
 
 [^CFM]: Developing the square in both losses we get: 
-$$\|u_\theta(t, x) - u_t(x|x_1)\|^2 = \|u_\theta(t, x)\|^2 + \|u_t(x|x_1)\|^2 - 2 \langle u_\theta(t, x), u_t(x|x_1) \rangle,$$
-and
-$$\|u_\theta(t, x) - u_t(x)\|^2 = \|u_\theta(t, x)\|^2 + \|u_t(x)\|^2 - 2 \langle u_\theta(t, x), u_t(x) \rangle.$$
-Taking the expectation over the last inner product term:
-$$
-\begin{align}
-\mathbb{E}_{x \sim p_t} ~\langle u_\theta(t, x), u_t(x) \rangle 
-&= \int \langle u_\theta(t, x), \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1 \rangle p_t(x) \dd{x} \\
-&= \int \langle u_\theta(t, x), \int u_t(x|x_1) p_t(x|x_1)q(x_1) dx_1 \rangle \dd{x} \\
-&= \int \int \langle u_\theta(t, x), u_t(x|x_1) \rangle p_t(x|x_1)q(x_1) dx_1 \dd{x} \\
-&= \mathbb{E}_{q_1(x_1) p(x|x_1)} ~\langle u_\theta(t, x), u_t(x|x_1) \rangle.
-\end{align}
-$$
-Then we see that the neural network squared norm terms are equal since:
-$$
-\mathbb{E}_{p_t} \|u_\theta(t, x)\|^2 = \int \|u_\theta(t, x)\|^2 p_t(x|x_1) q(x_1) \dd{x} \dd{x_1} = \mathbb{E}_{q_1(x_1) p(x|x_1)} \|u_\theta(t, x)\|^2
-$$
+        $$\|u_\theta(t, x) - u_t(x|x_1)\|^2 = \|u_\theta(t, x)\|^2 + \|u_t(x|x_1)\|^2 - 2 \langle u_\theta(t, x), u_t(x|x_1) \rangle,$$
+        and
+        $$\|u_\theta(t, x) - u_t(x)\|^2 = \|u_\theta(t, x)\|^2 + \|u_t(x)\|^2 - 2 \langle u_\theta(t, x), u_t(x) \rangle.$$
+        Taking the expectation over the last inner product term:
+        $$
+        \begin{align}
+        \mathbb{E}_{x \sim p_t} ~\langle u_\theta(t, x), u_t(x) \rangle 
+        &= \int \langle u_\theta(t, x), \int u_t(x|x_1) \frac{p_t(x|x_1)q(x_1)}{p_t(x)} dx_1 \rangle p_t(x) \dd{x} \\
+        &= \int \langle u_\theta(t, x), \int u_t(x|x_1) p_t(x|x_1)q(x_1) dx_1 \rangle \dd{x} \\
+        &= \int \int \langle u_\theta(t, x), u_t(x|x_1) \rangle p_t(x|x_1)q(x_1) dx_1 \dd{x} \\
+        &= \mathbb{E}_{q_1(x_1) p(x|x_1)} ~\langle u_\theta(t, x), u_t(x|x_1) \rangle.
+        \end{align}
+        $$
+        Then we see that the neural network squared norm terms are equal since:
+        $$
+        \mathbb{E}_{p_t} \|u_\theta(t, x)\|^2 = \int \|u_\theta(t, x)\|^2 p_t(x|x_1) q(x_1) \dd{x} \dd{x_1} = \mathbb{E}_{q_1(x_1) p(x|x_1)} \|u_\theta(t, x)\|^2
+        $$
 
 [^ODE_conditions]: A sufficient condition for $\phi_t$ to be invertible is for $u_t$ to be Lipschitz and continuous by Picard–Lindelöf theorem.
 
@@ -1676,15 +1685,12 @@ $$
 [^hutchinson]: The Skilling-Hutchinson trace estimator is  given by $\Tr(A) = \E[v^\top A v]$ with $v \sim p$ isotropic and centred. In our setting we are interested in $\div(u_t)(x) = \Tr(\frac{\partial u_t(x)}{\partial x}) = \E[v^\top \frac{\partial u_t(x)}{\partial x} v]$ which can be approximated with a Monte-Carlo estimator, where the integrand is computed via automatic forward or backward differentiation.
 
 [^OT]: Dynamic optimal transport [Benamou and Brenier, 2000]
-$$
-W(q_0, q_1)_2^2 = \inf_{p_t, u_t} \int \int_0^1  \|u_t(x)\|^2 p_t(x) \dd{t} \dd{x}
-$$
+       $$
+       W(q_0, q_1)_2^2 = \inf_{p_t, u_t} \int \int_0^1  \|u_t(x)\|^2 p_t(x) \dd{t} \dd{x}
+       $$
 
 [^1]: There's also the difference that in (standard) score-based diffusion models, we don't have "exact endpoints" in the sense that our $p_0$ is actually the reference we use during inference. Instead, we "just hope" that the chosen integration time $T$ is sufficiently large so that $p_0 \approx q_0$.
 
 [^2]: We can of course just compute $\nabla \log p_t(x)$ of the $p_t$ induced by $u_t$, but this will generally be ridiculoulsly expensive.
-
-
-
 
 [^footnote-test]: A footnote.
