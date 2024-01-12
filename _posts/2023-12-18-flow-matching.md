@@ -697,7 +697,9 @@ $$ -->
 <div>
 
 <p markdown="1" class="caption">
+
 Figure : *Different paths with the same endpoints marginals[^interpolation].*
+
 </p>
 <!-- $p_0 = p_1 = \mathcal{N}(0, I)$.* -->
 
@@ -1111,6 +1113,7 @@ $$
 <!-- $$ -->
 <!-- p_t(x \mid x_1) = \mathcal{N}\big(x; t x_1, (1 - t) + t \sigmamin \big) -->
 <!-- $$ -->
+
 In addition, letting $p_0 = \mathcal{N}([-\mu, 0], I)$ and $p_1 = \mathcal{N}([+\mu, 0], I)$ for some $\mu > 0$, we're back to the \ref{eq:g2g} example from earlier.
 
 We can then plug this choice of $\mu_t(x_1)$ and $\sigma_t(x_1)$ into \eqref{eq:gaussian-path} to obtain the conditional vector field, writing $\hlthree{\sigma_t(x_1)} = 1 - (1 - \sigmamin) t$ to make our lives simpler,
@@ -1258,7 +1261,7 @@ result in paths that are quite different from the marginal paths as illustrated 
 </div>
 
 
-In particular, we can see that the marginal paths $\phi_t(x)$ *do not cross*; this is indeed just the uniqueness property of ODE solutions ($\TODO$ ref?). A realization of the conditional vector field $u_t(x \mid x_1)$ also exhibits the "non-crossing paths" property, similar to the marginal flows $\phi_t(x)$, however paths $\phi_t(x \mid x_1)$ corresponding to *different* realizations $x_1 \sim q_1$ may intersect, as highlighted in the figure above.
+In particular, we can see that the marginal paths $\phi_t(x)$ *do not cross*; this is indeed just the uniqueness property of ODE solutions. A realization of the conditional vector field $u_t(x \mid x_1)$ also exhibits the "non-crossing paths" property, similar to the marginal flows $\phi_t(x)$, however paths $\phi_t(x \mid x_1)$ corresponding to *different* realizations $x_1 \sim q_1$ may intersect, as highlighted in the figure above.
 
 <!-- > [name=emilem] I like this bit but would the argument be more straightforward if $\hlone{x_t^{(1)}} = \hlone{x_t^{(2)}}$ ? -->
 
