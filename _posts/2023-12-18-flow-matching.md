@@ -1600,10 +1600,11 @@ Please cite us as:
                   \phi(x) = x + A h(B x + b)
                   \end{equation}
                   $$
-                  with parameters $A \in \R^{d\times m}$, $B \in \R^{ m\times m}$ and $b \in \R^m$. Leveraging Sylvester's determinant identity $\det(I_d + AB)=\det(I_m + BA)$, the determinant computation can be reduced to one of a $m \times m$ matrix which is advantageous if $m \ll d$.
+                  with parameters $A \in \R^{d\times m}$, $B \in \R^{ m\times m}$ and $b \in \R^m$. Leveraging Sylvester's determinant identity $\det(I_d + AB)=\det(I_m + BA)$, the determinant computation can be reduced to one of a $m \times m$ matrix which is advantageous if $m \mathrm{<<} d$.
+                  <!-- HACK: have to use `\mathrm{<<}` because `\ll` breaks in Jekyll for some reason -->
 
 [^residual_flow]: A sufficient condition for $\phi_k$ to be invertible is for $u_k$ to be $1/h$-Lipschitz [Behrmann et al., 2019].
-                  The inverse $\phi_k^{-1}$ can be approximated via ﬁxed-point iteration [Chen et al., 2019]..
+                  The inverse $\phi_k^{-1}$ can be approximated via ﬁxed-point iteration (Chen et al., 2019).
 
 [^log_pdf]: Expanding the divergence in the _continuity equation_ we have:
             $$
