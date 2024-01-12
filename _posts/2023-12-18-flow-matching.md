@@ -1485,11 +1485,44 @@ The OT coupling $\pi$ associates samples $x_0$ and $x_1$ such that the total dis
 This OT coupling is illustrated in the right hand side of the figure below. In contrast to the middle figure which an independent coupling, the OT one does not have paths that cross. This leads to lower training variance and faster sampling[^OT].
 
 
-<div markdown="1" style="display: flex; margin-top:0px; margin-bottom:0px;">
-<div markdown="1" style="margin: auto;">
+<div markdown="1" class="my-center">
+<div>
+<div markdown="1" class="my-side-by-side">
 
-![cond_ut](https://hackmd.io/_uploads/Hk9CoIzSp.jpg =700x)
+<div markdown="1" class="my-image-container">
 
+{% include image.html
+    name="Figure 18"
+    alt="One-sided conditioning (Lipman et al., 2022)"
+    ref="trajectory-marginals-vertical.png"
+    src="flow-matching/trajectory-marginals-vertical.png"
+%}
+
+</div>
+
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+    name="Figure 19"
+    alt="Two-sided conditioning (Tong et al., 2023)"
+    ref="trajectory-marginals-vertical-cond.png"
+    src="flow-matching/trajectory-marginals-vertical-cond.png"
+%}
+
+</div>
+
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+    name="Figure 20"
+    alt="OT coupling (Tong et al., 2023)"
+    ref="trajectory-marginals-vertical-ot.png"
+    src="flow-matching/trajectory-marginals-vertical-ot.png"
+%}
+
+</div>
+
+</div>
 </div>
 </div>
 
