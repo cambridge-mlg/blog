@@ -280,7 +280,7 @@ If we make the choice of $a = 1$ and $b = \mu$, then we get $\mathcal{N}(\mu, 1)
   name="Figure 3"
   alt="$\phi_t(x_0)$ for three samples $x_0 \sim p_0 = \mathcal{N}(0, 1)$ coloured according to $p_0(x_0)$."
   ref="heatmap-colored-trajs"
-  src="flow-matching/heatmap-colored-trajs.png"
+  src="flow-matching/simple-gaussian-without-trajs.png"
   width=600
 %}
 
