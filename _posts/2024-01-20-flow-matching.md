@@ -1233,7 +1233,7 @@ result in paths that are quite different from the marginal paths as illustrated 
   name="Figure 10"
   alt="Realizations of conditional paths from $p_0 = p_1 = \mathcal{N}(0, 1)$ for two different $x_1^{(i)}, x_1^{(2)} \sim q$ with conditional vector field given by $u_t(x \mid x_1) = (1 - t) x + t x_1$."
   ref=".png"
-  src="flow-matching/g2g-forward_samples.png"
+  src="flow-matching/g2g-vector-field-samples-cond.png"
   width=400
 %}
 <!-- ![forward_samples](https://hackmd.io/_uploads/r1skZ4CI6.png) -->
