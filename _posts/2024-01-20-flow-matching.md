@@ -1566,13 +1566,13 @@ Similarly to CNFs, sampled can be obtained at inference time by solving the ODE 
 Please cite us as:
 
 ```
-@misc{weng2021diffusion,
+@misc{mathieu2024flow_matching,
   title   = "An Introduction to Flow Matching",
   author  = "Mathieu, Emile and Fjelde, Tor and Dutordoir, Vincent",
   journal = "https://mlg.eng.cam.ac.uk/blog/",
   year    = "2024",
   month   = "January",
-  url     = "https://mlg.eng.cam.ac.uk/blog/TODO"
+  url     = "https://mlg.eng.cam.ac.uk/blog/2024/01/20/flow-matching.html"
 }
 ```
  
