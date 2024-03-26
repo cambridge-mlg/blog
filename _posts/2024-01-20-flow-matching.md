@@ -706,7 +706,7 @@ $$ -->
 
 <p markdown="1" class="caption">
 
-Figure : *Different paths with the same endpoints marginals[^interpolation].*
+Figure 7: *Different paths with the same endpoints marginals[^interpolation].*
 
 </p>
 <!-- $p_0 = p_1 = \mathcal{N}(0, I)$.* -->
@@ -755,8 +755,8 @@ with $\sigmamin > 0$ small, and for whatever reference $p_0$ we choose, typicall
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure"
-  alt="Two probability path $p_t(x|x_1)$."
+  name="Figure 8"
+  alt="Two probability paths for $p_t(x|x_1)$."
   ref="heatmap_with_cond_traj-v3"
   src="flow-matching/heatmap_with_cond_traj-v3.png"
   width=400
@@ -858,7 +858,7 @@ for some $\mu > 0$. We're effectively transforming a Gaussian to another Gaussia
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure"
+  name="Figure 9"
   ref="g2g-forward_samples-one-color.png"
   src="flow-matching/g2g-forward_samples-one-color.png"
   width=400
@@ -911,7 +911,7 @@ In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in thi
 <div>
 
 <p markdown="1" class="caption">
-Figure 7: *Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.*
+Figure 10: *Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.*
 </p>
 <!-- their importance weight $p_t(x \mid x_1) q(x_1) / p_t(x)$. -->
 
@@ -1147,7 +1147,7 @@ Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 8"
+  name="Figure 11"
   alt="Realizations of paths from $p_0$ to $p_1$ following conditional vector fields $u_t(x \mid x_1)$. Paths are highlighted by the sign of the 2nd vector component at time $t=1$."
   ref="g2g-vector-field-samples-cond.png"
   src="flow-matching/g2g-vector-field-samples-cond.png"
@@ -1159,7 +1159,7 @@ Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 9"
+  name="Figure 12"
   alt="Paths from $p_0$ to $p_1$ following the true marginal vector field $u_t(x)$. Paths are highlighted by the sign of the 2nd vector component."
   ref="g2g-forward_samples.png"
   src="flow-matching/g2g-forward_samples.png"
@@ -1239,7 +1239,7 @@ result in paths that are quite different from the marginal paths as illustrated 
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 10"
+  name="Figure 13"
   alt="Realizations of conditional paths from $p_0 = p_1 = \mathcal{N}(0, 1)$ for two different $x_1^{(i)}, x_1^{(2)} \sim q$ with conditional vector field given by $u_t(x \mid x_1) = (1 - t) x + t x_1$."
   ref=".png"
   src="flow-matching/g2g-vector-field-samples-cond.png"
@@ -1254,7 +1254,7 @@ result in paths that are quite different from the marginal paths as illustrated 
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 11"
+  name="Figure 14"
   alt="Paths from $p_0$ to $p_1$ following the true marginal vector field $u_t(x)$. Paths are highlighted by the sign of the 2nd vector component."
   ref=".png"
   src="flow-matching/g2g-forward_samples.png"
@@ -1292,7 +1292,7 @@ In slightly more complex scenarios, the situation becomes even more striking. Be
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 12"
+  name="Figure 15"
   alt="Realizations of conditional paths from $p_0 = \mathcal{N}([-\mu, 0], I)$ to $p_1 = \mathcal{N}([\mu, 0], I)$ following realizations of the conditional vector field $u_t(x \mid x_1)$. Paths are highlighted by the sign of the 2nd vector component."
   ref="vector-field-samples-cond.png"
   src="flow-matching/vector-field-samples-cond.png"
@@ -1304,7 +1304,7 @@ In slightly more complex scenarios, the situation becomes even more striking. Be
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 13"
+  name="Figure 16"
   alt="Paths from $p_0 = \mathcal{N}([-\mu, 0], I)$ to $p_1 = \mathcal{N}([\mu, 0], I)$ following the true marginal vector field $u_t(x)$. Paths are highlighted by the sign of the 2nd vector component."
   ref="vector-field-samples-marginal.png"
   src="flow-matching/vector-field-samples-marginal.png"
@@ -1329,7 +1329,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 14"
+  name="Figure 17"
   alt="Realizations of conditional paths from $p_0 = \mathcal{N}([-\mu, 0], I)$ to $p_1 = \mathcal{N}([\mu, 0], I)$ following realizations of the conditional vector field $u_t(x \mid x_1)$."
   ref="vector-field-samples-with-traj.png"
   src="flow-matching/vector-field-samples-with-traj.png"
@@ -1342,7 +1342,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 15"
+  name="Figure 18"
   alt="Variance of conditional vector field over $p_{1|t}$ for both blue and red trajectories."
   ref="variance_cond_vector_field.png"
   src="flow-matching/variance_cond_vector_field.png"
@@ -1420,7 +1420,7 @@ e.g. $\ p(x_t | x_1) = \mathrm{N}(x_t|tx_1, (1-t)^2)$.
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 16"
+  name="Figure 19"
   alt="One sided interpolation."
   ref="albergo_one_sided.jpg"
   src="flow-matching/albergo_one_sided.jpg"
@@ -1452,7 +1452,7 @@ For instance, a deterministic linear interpolation gives $p(x_t \mid x_0, x_1) =
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 17"
+  name="Figure 20"
   alt="Two sided interpolation."
   ref="albergo_two_sided.jpg"
   src="flow-matching/albergo_two_sided.jpg"
@@ -1502,7 +1502,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-    name="Figure 18"
+    name="Figure 21"
     alt="One-sided conditioning (Lipman et al., 2022)"
     ref="trajectory-marginals-vertical.png"
     src="flow-matching/trajectory-marginals-vertical.png"
@@ -1513,7 +1513,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-    name="Figure 19"
+    name="Figure 22"
     alt="Two-sided conditioning (Tong et al., 2023)"
     ref="trajectory-marginals-vertical-cond.png"
     src="flow-matching/trajectory-marginals-vertical-cond.png"
@@ -1524,7 +1524,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-    name="Figure 20"
+    name="Figure 23"
     alt="OT coupling (Tong et al., 2023)"
     ref="trajectory-marginals-vertical-ot.png"
     src="flow-matching/trajectory-marginals-vertical-ot.png"
