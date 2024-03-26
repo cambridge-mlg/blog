@@ -1588,47 +1588,47 @@ Please cite us as:
  
 # References
 
-- Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt (2022). [Flow Matching for Generative Modeling](http://arxiv.org/abs/2210.02747).
-
 - Albergo, Michael S. and Boffi, Nicholas M. and Vanden-Eijnden, Eric (2023). [Stochastic Interpolants: A Unifying Framework for Flows and Diffusions](http://arxiv.org/abs/2303.08797).
 
-- Chen & Lipman (2023). [Riemannian Flow Matching on General Geometries](http://arxiv.org/abs/2302.03660v2).
-
-- De Bortoli, Mathieu & Hutchinson et al. (2022). [Riemannian Score-Based Generative Modelling](http://arxiv.org/abs/2202.02763v3).
-
-- Dupont, Doucet & Teh (2019). [Augmented Neural Odes](http://arxiv.org/abs/1904.01681v3).
-
-- Klein, Krämer & Noé (2023). [Equivariant Flow Matching](http://arxiv.org/abs/2306.15030v2).
-
-- Tong, Malkin & Huguet et al. (2023). [Improving and Generalizing Flow-Based Generative Models With Minibatch Optimal Transport](http://arxiv.org/abs/2302.00482v2).
-
-- Pooladian, Aram-Alexandre and {Ben-Hamu}, Heli and {Domingo-Enrich}, Carles and Amos, Brandon and Lipman, Yaron and Chen, Ricky T. Q. (2023). [Multisample Flow Matching: Straightening Flows With Minibatch Couplings](http://arxiv.org/abs/2304.14772).
-
-- Liu, Xingchao and Gong, Chengyue and Liu, Qiang (2022). [Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow](http://arxiv.org/abs/2209.03003).
-
-- Song, Sohl-Dickstein & Kingma et al. (2020). [Score-Based Generative Modeling Through Stochastic Differential Equations](http://arxiv.org/abs/2011.13456v2).
-
-- Tong, Alexander and Malkin, Nikolay and Fatras, Kilian and Atanackovic, Lazar and Zhang, Yanlei and Huguet, Guillaume and Wolf, Guy and Bengio, Yoshua (2023). [Simulation-Free Schrodinger Bridges via Score and Flow Matching](http://arxiv.org/abs/2307.03672).
-
 - Behrmann, Jens and Grathwohl, Will and Chen, Ricky T. Q. and Duvenaud, David and Jacobsen, Joern-Henrik (2019). [Invertible Residual Networks](https://proceedings.mlr.press/v97/behrmann19a.html).
-
-- Chen, Ricky T. Q. and Behrmann, Jens and Duvenaud, David K and Jacobsen, Joern-Henrik (2019). [Residual flows for invertible generative modeling](http://arxiv.org/abs/1906.02735).
-
-- Huang, Chin-Wei and Krueger, David and Lacoste, Alexandre and Courville, Aaron (2018). [Neural Autoregressive Flows](http://arxiv.org/abs/1804.00779).
-
-- George Papamakarios, Theo Pavlakou, Iain Murray (2018). [Masked Autoregressive Flow for Density Estimation](https://proceedings.neurips.cc/paper/2017/file/6c1da886822c67822bcf3679d04369fa-Paper.pdf).
-
-- Watson, Joseph L. and Juergens, David and Bennett, Nathaniel R. and Trippe, Brian L. and Yim, Jason and Eisenach, Helen E. and Ahern, Woody and Borst, Andrew J. and Ragotte, Robert J. and Milles, Lukas F. and Wicky, Basile I. M. and Hanikel, Nikita and Pellock, Samuel J. and Courbet, Alexis and Sheffler, William and Wang, Jue and Venkatesh, Preetham and Sappington, Isaac and Torres, Susana V{\'a}zquez and Lauko, Anna and De Bortoli, Valentin and Mathieu, Emile and Ovchinnikov, Sergey and Barzilay, Regina and Jaakkola, Tommi S. and DiMaio, Frank and Baek, Minkyung and Baker, David (2023). [De Novo Design of Protein Structure and Function with RFdiffusion](https://www.nature.com/articles/s41586-023-06415-8).
-
-- Monge, Gaspard (1781). Mémoire Sur La Théorie Des Déblais et Des Remblais.
-
-- Peyré, Gabriel and Cuturi, Marco (2020). [Computational Optimal Transport](http://arxiv.org/abs/1803.00567).
 
 - Betker, James, Gabriel Goh, Li Jing, TimBrooks, Jianfeng Wang, Linjie Li, LongOuyang, JuntangZhuang, JoyceLee, YufeiGuo, WesamManassra, PrafullaDhariwal, CaseyChu, YunxinJiao and Aditya Ramesh (2023). [Improving Image Generation with Better Captions](https://cdn.openai.com/papers/dall-e-3.pdf).
 
 - Chen & Gopinath (2000) Gaussianization, Advances in Neural Information Processing Systems.
 
+- Chen & Lipman (2023). [Riemannian Flow Matching on General Geometries](http://arxiv.org/abs/2302.03660v2).
+
+- Chen, Ricky T. Q. and Behrmann, Jens and Duvenaud, David K and Jacobsen, Joern-Henrik (2019). [Residual flows for invertible generative modeling](http://arxiv.org/abs/1906.02735).
+
+- De Bortoli, Mathieu & Hutchinson et al. (2022). [Riemannian Score-Based Generative Modelling](http://arxiv.org/abs/2202.02763v3).
+
+- Dupont, Doucet & Teh (2019). [Augmented Neural Odes](http://arxiv.org/abs/1904.01681v3).
+
 - Friedman (1987) Exploratory projection pursuit, Journal of the American statistical association.
+
+- George Papamakarios, Theo Pavlakou, Iain Murray (2018). [Masked Autoregressive Flow for Density Estimation](https://proceedings.neurips.cc/paper/2017/file/6c1da886822c67822bcf3679d04369fa-Paper.pdf).
+
+- Huang, Chin-Wei and Krueger, David and Lacoste, Alexandre and Courville, Aaron (2018). [Neural Autoregressive Flows](http://arxiv.org/abs/1804.00779).
+
+- Klein, Krämer & Noé (2023). [Equivariant Flow Matching](http://arxiv.org/abs/2306.15030v2).
+
+- Lipman, Yaron and Chen, Ricky T. Q. and Ben-Hamu, Heli and Nickel, Maximilian and Le, Matt (2022). [Flow Matching for Generative Modeling](http://arxiv.org/abs/2210.02747).
+
+- Liu, Xingchao and Gong, Chengyue and Liu, Qiang (2022). [Flow Straight and Fast: Learning to Generate and Transfer Data with Rectified Flow](http://arxiv.org/abs/2209.03003).
+
+- Monge, Gaspard (1781). Mémoire Sur La Théorie Des Déblais et Des Remblais.
+
+- Peyré, Gabriel and Cuturi, Marco (2020). [Computational Optimal Transport](http://arxiv.org/abs/1803.00567).
+
+- Pooladian, Aram-Alexandre and {Ben-Hamu}, Heli and {Domingo-Enrich}, Carles and Amos, Brandon and Lipman, Yaron and Chen, Ricky T. Q. (2023). [Multisample Flow Matching: Straightening Flows With Minibatch Couplings](http://arxiv.org/abs/2304.14772).
+
+- Song, Sohl-Dickstein & Kingma et al. (2020). [Score-Based Generative Modeling Through Stochastic Differential Equations](http://arxiv.org/abs/2011.13456v2).
+
+- Tong, Alexander and Malkin, Nikolay and Fatras, Kilian and Atanackovic, Lazar and Zhang, Yanlei and Huguet, Guillaume and Wolf, Guy and Bengio, Yoshua (2023). [Simulation-Free Schrodinger Bridges via Score and Flow Matching](http://arxiv.org/abs/2307.03672).
+
+- Tong, Malkin & Huguet et al. (2023). [Improving and Generalizing Flow-Based Generative Models With Minibatch Optimal Transport](http://arxiv.org/abs/2302.00482v2).
+
+- Watson, Joseph L. and Juergens, David and Bennett, Nathaniel R. and Trippe, Brian L. and Yim, Jason and Eisenach, Helen E. and Ahern, Woody and Borst, Andrew J. and Ragotte, Robert J. and Milles, Lukas F. and Wicky, Basile I. M. and Hanikel, Nikita and Pellock, Samuel J. and Courbet, Alexis and Sheffler, William and Wang, Jue and Venkatesh, Preetham and Sappington, Isaac and Torres, Susana V{\'a}zquez and Lauko, Anna and De Bortoli, Valentin and Mathieu, Emile and Ovchinnikov, Sergey and Barzilay, Regina and Jaakkola, Tommi S. and DiMaio, Frank and Baek, Minkyung and Baker, David (2023). [De Novo Design of Protein Structure and Function with RFdiffusion](https://www.nature.com/articles/s41586-023-06415-8).
 
 
 [^chainrule]: The property $\phi \circ \phi^{-1} = \Id$ implies, by the chain rule,
