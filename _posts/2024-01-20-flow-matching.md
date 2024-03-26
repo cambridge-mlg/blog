@@ -96,6 +96,10 @@ draft: true
     color: red;
     text-decoration: line-through;
 }
+
+main .image-container .caption {
+    text-align: center;
+}
 </style>
 
 
