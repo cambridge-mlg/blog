@@ -883,7 +883,7 @@ u_t \big( \phi_t(x_0) \big)
 &\approx \frac{1}{n} \sum_{i = 1}^n u_t \big( \phi_t(x_0) \mid x_1^{(i)} \big) \ \text{with } x_1^{(i)} \sim p_{1|t}(x_1 \mid \phi_t(x_0)).
 \end{align}
 $$
-In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in this specific setting we do have closed-form expressions for everything (Albergo & Boffi, 2023), and so we can visualise the marginal vector field $u_t\big( \phi_t(x_0)\big)$ and the conditional vector fields $u_t \big( \phi_t(x_0) \mid x_1^{(i)} \big)$ for all our "data" samples $x_1^{(i)}$ and see how they compare. This is shown in the figure below.
+In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in this specific setting we do have closed-form expressions for everything (Albergo et al., 2023), and so we can visualise the marginal vector field $u_t\big( \phi_t(x_0)\big)$ and the conditional vector fields $u_t \big( \phi_t(x_0) \mid x_1^{(i)} \big)$ for all our "data" samples $x_1^{(i)}$ and see how they compare. This is shown in the figure below.
 
 <div markdown="1" class="my-center">
 <div>
@@ -1425,7 +1425,7 @@ e.g. $\ p(x_t | x_1) = \mathrm{N}(x_t|tx_1, (1-t)^2)$.
 
 {% include image.html
   name="Figure 19"
-  alt="One sided interpolation."
+  alt="One sided interpolation. Source: Figure (2) in Albergo et al. (2023)."
   ref="albergo_one_sided.jpg"
   src="flow-matching/albergo_one_sided.jpg"
   width=800
@@ -1457,7 +1457,7 @@ For instance, a deterministic linear interpolation gives $p(x_t \mid x_0, x_1) =
 
 {% include image.html
   name="Figure 20"
-  alt="Two sided interpolation."
+  alt="Two sided interpolation. Source: Figure (2) in Albergo et al. (2023)."
   ref="albergo_two_sided.jpg"
   src="flow-matching/albergo_two_sided.jpg"
   width=800
