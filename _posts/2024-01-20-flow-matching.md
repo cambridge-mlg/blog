@@ -139,7 +139,13 @@ $$
 \nonumber
 $$
 
-# Flow matching
+# Table of contents
+{:.no_toc}
+
+1. placeholder
+{:toc}
+
+# Introduction
 
 <a href="https://imgflip.com/i/840k1z"><img src="https://i.imgflip.com/840k1z.jpg" title="New kid on the block."/></a>
 
@@ -147,6 +153,7 @@ $$
 
 
 ## Generative Modelling
+{:.no_toc}
 
 Let's assume we have data samples $x_1, x_2, \ldots, x_n$ from a distribution of interest $q_1(x)$, which density is unknown. We're interested in using these samples to learn a probabilistic model approximating $q_1$. In particular, we want efficient generation of new samples (approximately ) distributed from $q_1$. This task is referred to as **generative modelling**.
 
@@ -186,10 +193,11 @@ The advancement in generative modelling methods over the past decade has been no
 
 
 ## Outline
+{:.no_toc}
 
 Flow Matching (FM) models are in nature most closely related to (Continuous) Normalising Flows (CNFs).  Therefore, we start this blogpost by briefly recapping the core concepts behind CNFs. We then continue by discussing the difficulties of CNFs and how FM models address them.
 
-## Basics: Normalising Flows
+# Normalising Flows
 
 Let $\phi: \mathbb{R}^d \rightarrow \mathbb{R}^d$ be a continuously differentiable function which transforms elements of $\mathbb{R}^d$, with a continously differentiable inverse $\phi^{-1}: \mathbb{R}^d \to \mathbb{R}^d$.
 Let $q_0(x)$ be a density on $\mathbb{R}^d$ and let $p_1(\cdot)$ be the density induced by the following sampling procedure
@@ -399,6 +407,7 @@ $$
 
 
 #### Continuous change-in-variables
+{:.no_toc}
 
 Of course, this only defines the map $\phi_t(x)$; for this to be a useful normalising flow, we still need to compute the log-abs-determinant of the Jacobian!
 
@@ -459,6 +468,7 @@ Now that you know why CNFs are cool, let's have a look at what such a flow would
 
 <div markdown="1" class="my-success">
 #### A simple example: $u_t$ from a Gaussian to a Gaussian
+{:.no_toc}
 
 Let's come back to our earlier example of mapping a 1D Gaussian to another one with different mean.
 In contrast to previously where we derived a 'one-shot' (i.e. *discrete*) flow bridging between the two Gaussians, we now aim to derive a time-*continuous flow* $\phi_t$ which would correspond to the time integrating a vector field $u_t$.
@@ -571,6 +581,8 @@ We could of course have gone the other way, i.e. define the $u_t$ such that $p_0
 
 
 #### Training CNFs
+{:.no_toc}
+
 Similarly to any flows, CNFs can be trained by maximum log-likelihood
 $$
 \mathcal{L}(\theta) = \mathbb{E}_{x\sim q_1} [\log p_1(x)],
@@ -587,7 +599,7 @@ CNFs are very expressive as they parametrise a large class of flows, and therefo
 
 
 
-## Flow matching
+# Flow matching
 
 
 And that is exactly where Flow Matching (FM) comes in!
@@ -1087,6 +1099,7 @@ The simplest solution to the above is then just
 
 <div markdown="1" class="my-success">
 #### Example: Linear interpolation
+{:.no_toc}
 
 A simple choice for the mean $\mu_t(x_1)$ and std. $\sigma_t(x_1)$ is the linear interpolation for both, i.e.
 
@@ -1463,6 +1476,7 @@ $$
  -->
 
 #### Optimal Transport (OT) coupling
+{:.no_toc}
 
 <!-- [Liu et al., 2022, Tong et al., 2023] suggest to alleviate this by using a **joint coupling** $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$ which correlates pairs $(x_1, x_0)$. -->
 Now let's go back to the idea of *not* using an independant coupling (i.e. pairing) but instead to correlate pairs $(x_1, x_0)$ with a joint $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$.
@@ -1477,7 +1491,7 @@ which minimises the optimal transport (i.e. Wasserstein) cost (Monge, 1781, Peyr
 The OT coupling $\pi$ associates samples $x_0$ and $x_1$ such that the total distance is minimised.
 <!-- This prevents the crossing paths behaviour that we highlighted earlier, as permuting samples would yield non crossing paths which would have a lower total distance cost, and as such the coupling yielding to crossing paths cannot be the OT coupling. -->
 
-This OT coupling is illustrated in the right hand side of the figure below. In contrast to the middle figure which an independent coupling, the OT one does not have paths that cross. This leads to lower training variance and faster sampling[^OT].
+This OT coupling is illustrated in the right hand side of the figure below, adapted from Tong et al. (2023). In contrast to the middle figure which an independent coupling, the OT one does not have paths that cross. This leads to lower training variance and faster sampling[^OT].
 
 
 <div markdown="1" class="my-center">
@@ -1543,7 +1557,7 @@ such that $\sum_{i,j} \|x_1^{(i)} - x_0^{(\sigma(j))}\|^2$ is minimised (over al
 <!-- > [name=emilem] I agree, I'd suggest  -->
  
  
-## Quick Summary
+# Quick Summary
 
 <!-- > [name=Tor] Maybe we should have a slightly more informal tone here? And
 > - Maybe mention some open-source impls if people want to get started (unless we cook up something) on their own? -->
@@ -1556,7 +1570,7 @@ Similarly to CNFs, sampled can be obtained at inference time by solving the ODE 
 <!-- which bridge between a noise refence distribution and a target data distribution, and as such constructs a generative model. -->
 
 
-## Citation 
+# Citation 
  
 Please cite us as:
 
@@ -1690,3 +1704,5 @@ Please cite us as:
 [^1]: There's also the difference that in (standard) score-based diffusion models, we don't have "exact endpoints" in the sense that our $p_0$ is actually the reference we use during inference. Instead, we "just hope" that the chosen integration time $T$ is sufficiently large so that $p_0 \approx q_0$.
 
 [^2]: We can of course just compute $\nabla \log p_t(x)$ of the $p_t$ induced by $u_t$, but this will generally be ridiculoulsly expensive.
+
+[^interpolation]: setup.
