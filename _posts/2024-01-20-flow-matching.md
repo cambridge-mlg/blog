@@ -956,7 +956,7 @@ which implies that we can use ${\mathcal{L}}_{\text{CFM}}$
 
 instead to train the parametric vector field $u_{\theta}$.
 The defer the full proof to the footnote[^CFM], but show the key idea below.
-By developing the squared norm in both losses, we can easily show that the squared terms are equal or independant of $\theta$.
+By developing the squared norm in both losses, we can easily show that the squared terms are equal or independent of $\theta$.
 Let's develop inner product term for ${\mathcal{L}}_{\text{FM}}$ 
 
 and show that it is equal to the inner product of ${\mathcal{L}}_{\text{CFM}}$:
@@ -1484,7 +1484,7 @@ $$
 {:.no_toc}
 
 <!-- [Liu et al., 2022, Tong et al., 2023] suggest to alleviate this by using a **joint coupling** $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$ which correlates pairs $(x_1, x_0)$. -->
-Now let's go back to the idea of *not* using an independant coupling (i.e. pairing) but instead to correlate pairs $(x_1, x_0)$ with a joint $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$.
+Now let's go back to the idea of *not* using an independent coupling (i.e. pairing) but instead to correlate pairs $(x_1, x_0)$ with a joint $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$.
 Tong et al. (2023) and Pooladian et al. (2023) suggest using the *optimal transport coupling*
 $$
 \begin{equation}
