@@ -216,12 +216,13 @@ $$
 \begin{align}
 \label{eq:changevar}
 p_1(y) &= q_0(\phi^{-1}(y)) \abs{\det\left[\frac{\partial \phi^{-1}}{\partial y}(y)\right]} \\
+\label{eq:changevar-alt}
  &= \frac{q_0(x)}{\abs{\det\left[\frac{\partial \phi}{\partial x}(x)\right]}} \quad \text{with } x = \phi^{-1}(y)
 \end{align}
 $$
 where the last equality can be seen from the fact that $\phi \circ \phi^{-1} = \Id$ and a simple application of the chain rule[^chainrule].
 The quantity $\frac{\partial \phi^{-1}}{\partial y}$ is the Jacobian of the inverse map. It is a matrix of size $d\times d$ containing $J_{ij} = \frac{d\phi^{-1}_i}{dx_j}$.
-Depending on the task at hand, evaluation of likelihood or sampling, one of the two formulation of $\eqref{eq:changevar}$ is preferred.
+Depending on the task at hand, evaluation of likelihood or sampling, the formulation in $\eqref{eq:changevar}$ or $\eqref{eq:changevar-alt}$ is preferred.
 
 <div markdown="1" class="my-success">
 #### Example: Transformation of 1D Gaussian variables by linear map
