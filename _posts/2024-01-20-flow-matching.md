@@ -686,7 +686,7 @@ $$ -->
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  ref="forward_samples-one-color-3.png"
+  ref="forward_samples_ot-one-color.png"
   src="flow-matching/forward_samples-one-color-3.png"
   width=400
 %}
@@ -695,7 +695,7 @@ $$ -->
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  ref="forward_samples_ot-one-color.png"
+  ref="forward_samples-one-color-3.png"
   src="flow-matching/forward_samples_ot-one-color.png"
   width=400
 %}
@@ -1708,4 +1708,4 @@ Please cite us as:
 
 [^2]: We can of course just compute $\nabla \log p_t(x)$ of the $p_t$ induced by $u_t$, but this will generally be ridiculoulsly expensive.
 
-[^interpolation]: setup.
+[^interpolation]: The top row is with reference $p_0 = \mathcal{N}([-a, 0], I)$ and target $p_1 = (1/2) \mathcal{N}([a, -10], I) + (1 / 2) \mathcal{N}([a, 10], I)$, and the bottom row is the \ref{eq:g2g} example. The left column shows the straight-line solutions for the *marginals* and the right column shows the marginal solutions induced by considering the straight-line *conditional* interpolants.
