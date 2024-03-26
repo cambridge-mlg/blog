@@ -222,7 +222,7 @@ p_1(y) &= q_0(\phi^{-1}(y)) \abs{\det\left[\frac{\partial \phi^{-1}}{\partial y}
 $$
 where the last equality can be seen from the fact that $\phi \circ \phi^{-1} = \Id$ and a simple application of the chain rule[^chainrule].
 The quantity $\frac{\partial \phi^{-1}}{\partial y}$ is the Jacobian of the inverse map. It is a matrix of size $d\times d$ containing $J_{ij} = \frac{d\phi^{-1}_i}{dx_j}$.
-Depending on the task at hand, evaluation of likelihood or sampling, the formulation in $\eqref{eq:changevar}$ or $\eqref{eq:changevar-alt}$ is preferred.
+Depending on the task at hand, evaluation of likelihood or sampling, the formulation in $\eqref{eq:changevar}$ or $\eqref{eq:changevar-alt}$ is preferred (Friedman, 1987; Chen & Gopinath, 2000).
 
 <div markdown="1" class="my-success">
 #### Example: Transformation of 1D Gaussian variables by linear map
@@ -1626,7 +1626,9 @@ Please cite us as:
 
 - Betker, James, Gabriel Goh, Li Jing, TimBrooks, Jianfeng Wang, Linjie Li, LongOuyang, JuntangZhuang, JoyceLee, YufeiGuo, WesamManassra, PrafullaDhariwal, CaseyChu, YunxinJiao and Aditya Ramesh (2023). [Improving Image Generation with Better Captions](https://cdn.openai.com/papers/dall-e-3.pdf).
 
+- Chen & Gopinath (2000) Gaussianization, Advances in Neural Information Processing Systems.
 
+- Friedman (1987) Exploratory projection pursuit, Journal of the American statistical association.
 
 
 [^chainrule]: The property $\phi \circ \phi^{-1} = \Id$ implies, by the chain rule,
