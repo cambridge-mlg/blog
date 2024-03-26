@@ -725,7 +725,7 @@ Figure 7: *Different paths with the same endpoints marginals[^interpolation].*
 
 ### Conditional Flows
 
-First, let's remind that the *continuity equation* relates a vector field $u_t$ to (the time evolution of) a probability path $p_t$
+First, let's remind ourselves that the *continuity equation* relates a vector field $u_t$ to (the time evolution of) a probability path $p_t$
 $$
 \begin{equation}
 \pdv{p_t(x)}{t} = - \nabla \cdot \big( u_t(x) p_t(x) \big),
