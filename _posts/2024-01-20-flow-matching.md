@@ -863,7 +863,26 @@ for some $\mu > 0$. We're effectively transforming a Gaussian to another Gaussia
 
 {% include image.html
   name="Figure 9"
-  ref="g2g-forward_samples-one-color.png"
+  alt="Example conditional paths $\phi_t(x_0 \mid x_1)$ of \eqref{eq:g2g} with $\mu = 10$."
+  ref="g2g-cond-paths-one-color"
+  src="flow-matching/g2g-cond-paths-one-color.png"
+  width=400
+%}
+
+</div>
+</div>
+</div>
+
+In the end, we're really just interested in learning the *marginal* paths $\phi_t(x_0)$ for initial points $x_0$ that are probable under $p_0$, which we can then use to generate samples $x_1 = \phi_1(x_0)$. In this simple example, we can obain closed-form expressions for $\phi_t(x_0)$ corresponding to the conditional paths $\phi_t(x_0 \mid x_1)$ of \eqref{eq:g2g}, as visualised below.
+
+<div markdown="1" class="my-center">
+<div>
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+  name="Figure 10"
+  alt="Example marginal paths $\phi_t(x_0)$ of \eqref{eq:g2g} with $\mu = 10$."
+  ref="g2g-marginal-paths-one-color"
   src="flow-matching/g2g-forward_samples-one-color.png"
   width=400
 %}
@@ -872,7 +891,7 @@ for some $\mu > 0$. We're effectively transforming a Gaussian to another Gaussia
 </div>
 </div>
 
-In the end, we're really just interested in learning the marginal paths $\phi_t(x_0)$ for initial points $x_0$ that are probable under $p_0$. With that in mind, let's pick a random initial point $x_0$ from $p_0$, and then compare a MC estimator for $u_t(x_0)$ at different values of $t$ along the path $\phi_t(x_0)$, i.e. we'll be looking at
+With that in mind, let's pick a random initial point $x_0$ from $p_0$, and then compare a MC estimator for $u_t(x_0)$ at different values of $t$ along the path $\phi_t(x_0)$, i.e. we'll be looking at
 <!-- $$
 u_t \big( \phi_t(x_0) \big) \approx \frac{1}{n} \sum_{i = 1}^n u_t \big( \phi_t(x_0) \mid x_1^{(i)} \big) \frac{p_t(\phi_t(x_0) \mid x_1^{(i)})}{p_t(\phi_t(x_0))} \quad \text{with } x_1^{(i)} \sim p_1.
 $$ -->
