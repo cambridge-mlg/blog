@@ -426,7 +426,7 @@ $$
 $$
 
 <!-- for some initial distribution $p_0$. -->
-This statement on the time-evolution of $p_t$ is generally known as the *Continuity Equation* or *Transport Equation*. We refer to $p_t$ as the probability path induced by $u_t$.
+This statement on the time-evolution of $p_t$ is generally known as the *Transport Equation*. We refer to $p_t$ as the probability path induced by $u_t$.
 
 <!-- We can also rewrite this in log-space[^log_pdf]  -->
 Computing the *total* derivative (as $x_t$ also depends on $t$) in log-space yields[^log_pdf] 
@@ -451,13 +451,15 @@ $$
 \log p_\theta(x) \triangleq \log p_1(x) = \log p_0(x_0) - \int_0^1 (\nabla \cdot u_\theta)(x_t) \dd t.
 $$
 
-In practice, both the time evolution of $x_t$ and its log density $\log p_t$ are solved jointly
+In practice, to compute $\log p_t$ one can either solve both the time evolution of $x_t$ and its log density $\log p_t$ jointly
 
 $$
 \begin{equation}
-\frac{\dd}{\dd t} \Biggl( \begin{aligned} x_t \ \quad \\ \log p(x_t) \end{aligned} \Biggr) = \Biggl( \begin{aligned} u_\theta(t, x_t) \quad \\ - \div u_\theta(t, x_t) \end{aligned} \Biggr).
+\frac{\dd}{\dd t} \Biggl( \begin{aligned} x_t \ \quad \\ \log p_t(x_t) \end{aligned} \Biggr) = \Biggl( \begin{aligned} u_\theta(t, x_t) \quad \\ - \div u_\theta(t, x_t) \end{aligned} \Biggr),
 \end{equation}
 $$
+
+or solve only for $x_t$ and then use quadrature methods to estimate $\log p_t(x_t)$.
 
 Feeding this (joint) vector field to an adaptive step-size ODE solver allows us to control both the error in the sample $x_t$ and the error in the $\log p_t(x)$.
 
@@ -725,7 +727,7 @@ Figure 7: *Different paths with the same endpoints marginals[^interpolation].*
 
 ### Conditional Flows
 
-First, let's remind ourselves that the *continuity equation* relates a vector field $u_t$ to (the time evolution of) a probability path $p_t$
+First, let's remind ourselves that the transport equation relates a vector field $u_t$ to (the time evolution of) a probability path $p_t$
 $$
 \begin{equation}
 \pdv{p_t(x)}{t} = - \nabla \cdot \big( u_t(x) p_t(x) \big),
@@ -768,7 +770,7 @@ with $\sigmamin > 0$ small, and for whatever reference $p_0$ we choose, typicall
 </div>
 </div>
 
-The conditional probability path also satisfies the continuity equation with the **conditional vector field** $u_t(x \mid x_1)$:
+The conditional probability path also satisfies the transport equation with the **conditional vector field** $u_t(x \mid x_1)$:
 
 $$
 \begin{equation}
@@ -777,7 +779,7 @@ $$
 \end{equation}
 $$
 
-<!-- Lipman et al. (2023) introduced the notion of **Conditional Flow Matching (CFM)** by noticing that the *conditional* vector field $u_t(x \mid x_1)$, which satisfies the continuity equation for the conditional density $p_t(x \mid x_1)$
+<!-- Lipman et al. (2023) introduced the notion of **Conditional Flow Matching (CFM)** by noticing that the *conditional* vector field $u_t(x \mid x_1)$, which satisfies the transport equation for the conditional density $p_t(x \mid x_1)$
 \label{eq:continuity-cond-2}
 $$
 \begin{equation}
@@ -799,7 +801,7 @@ $$
 
 <!-- That is, we have an unbiased estimator the marginal vector field $u_t$ that we want to learn by sampling $x_1$ from $p_{1 \mid t}(x_1 \mid x)$ and evaluating $u_t(x \mid x_1)$. -->
 
-To see why this $u_t$ the same the vector field as the one defined earlier, i.e. the one generating the (marginal) pribability path $p_t$, we need to show that the expression above for the marginal vector field $u_t(x)$ satisfies the continuity equation
+To see why this $u_t$ the same the vector field as the one defined earlier, i.e. the one generating the (marginal) pribability path $p_t$, we need to show that the expression above for the marginal vector field $u_t(x)$ satisfies the transport equation
 
 $$
 \begin{equation}
@@ -971,9 +973,7 @@ $$
 \nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta),
 \end{equation}
 $$
-which implies that we can use ${\mathcal{L}}_{\text{CFM}}$
-
-instead to train the parametric vector field $u_{\theta}$.
+which implies that we can use ${\mathcal{L}}_{\text{CFM}}$ instead to train the parametric vector field $u_{\theta}$.
 The defer the full proof to the footnote[^CFM], but show the key idea below.
 By developing the squared norm in both losses, we can easily show that the squared terms are equal or independent of $\theta$.
 Let's develop inner product term for ${\mathcal{L}}_{\text{FM}}$ 
@@ -1021,7 +1021,7 @@ As a result both endpoints constraint are satisfied since ones recovers
 </div>
 
 We have defined a probability path $p_t$ in terms of conditional probability path $p_t(\cdot|x_1)$, yet how do we define the latter?
-We know that the continuity equation $\frac{\partial}{\partial_t} p_t(x_t) = - (\nabla \cdot (u_t p_t))(x_t)$ relates a vector field (i.e. vector field) to a propability path $p_t$ (given an initial value $p_{t=0} = q_0$).
+We know that the transport equation $\frac{\partial}{\partial_t} p_t(x_t) = - (\nabla \cdot (u_t p_t))(x_t)$ relates a vector field (i.e. vector field) to a propability path $p_t$ (given an initial value $p_{t=0} = q_0$).
 As such it is sufficient to construct a _conditional vector field_ $u_t(\cdot|x_1)$ which induces a conditional probability path $p_t(\cdot|x_1)$ with the right boundary conditions.
 
 -->
@@ -1138,7 +1138,7 @@ so that
 
 $$
 \begin{equation}
-\big( \hlone{\mu_0(x_1)} + \hlthree{\sigma_0(x_1)} x_1 \big) \sim p_0 \quad \text{and} \quad \big( \hlone{\mu_1(x_1)} + \hlthree{\sigma_1(x_1)} x_1 \big) \sim \mathcal{N}(x_1, \sigmamin^2 I)
+\big( {\hlone{\mu_0(x_1)}} + {\hlthree{\sigma_0(x_1)}} x_1 \big) \sim p_0 \quad \text{and} \quad \big( {\hlone{\mu_1(x_1)}} + {\hlthree{\sigma_1(x_1)}} x_1 \big) \sim \mathcal{N}(x_1, \sigmamin^2 I)
 \end{equation}
 $$
 <!-- and so -->
@@ -1771,7 +1771,7 @@ Please cite us as:
 [^residual_flow]: A sufficient condition for $\phi_k$ to be invertible is for $u_k$ to be $1/h$-Lipschitz [Behrmann et al., 2019].
                   The inverse $\phi_k^{-1}$ can be approximated via ﬁxed-point iteration (Chen et al., 2019).
 
-[^log_pdf]: Expanding the divergence in the _continuity equation_ we have:
+[^log_pdf]: Expanding the divergence in the _transport equation_ we have:
             $$
             \begin{equation}
             \frac{\partial}{\partial_t} p_t(x_t) 
@@ -1813,7 +1813,7 @@ Please cite us as:
 [^ODE_conditions]: A sufficient condition for $\phi_t$ to be invertible is for $u_t$ to be Lipschitz and continuous by Picard–Lindelöf theorem.
 
 
-[^FPE]: The _Fokker–Planck equation_ gives the time evolution of the density induced by a stochastic process. For ODEs where the diffusion term is zero, one recovers the continuity equation.
+[^FPE]: The _Fokker–Planck equation_ gives the time evolution of the density induced by a stochastic process. For ODEs where the diffusion term is zero, one recovers the transport equation.
 
 [^hutchinson]: The Skilling-Hutchinson trace estimator is  given by $\Tr(A) = \E[v^\top A v]$ with $v \sim p$ isotropic and centred. In our setting we are interested in $\div(u_t)(x) = \Tr(\frac{\partial u_t(x)}{\partial x}) = \E[v^\top \frac{\partial u_t(x)}{\partial x} v]$ which can be approximated with a Monte-Carlo estimator, where the integrand is computed via automatic forward or backward differentiation.
 
