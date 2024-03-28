@@ -1517,8 +1517,11 @@ $$
 <!-- [Liu et al., 2022, Tong et al., 2023] suggest to alleviate this by using a **joint coupling** $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$ which correlates pairs $(x_1, x_0)$. -->
 Now let's go back to the idea of *not* using an independent coupling (i.e. pairing) but instead to correlate pairs $(x_1, x_0)$ with a joint $q(x_1, x_0) \neq q_1(x_1) q_0(x_0)$.
 Tong et al. (2023) and Pooladian et al. (2023) suggest using the *optimal transport coupling*
+
 $$
 \begin{equation}
+\tag{OT}
+\label{eq:ot}
 q(x_1, x_0) = \pi(x_1, x_0) \in \arg\inf_{\pi \in \Pi} \int \|x_1 - x_0\|_2^2 \mathrm{d} \pi(x_1, x_0)
 \end{equation}
 $$
@@ -1583,7 +1586,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 In practice, we cannot compute the optimal coupling $\pi$ between $x_1 \sim q_1$ and $x_0 \sim q_0$, as algorithms solving this problem are only known for finite distributions.
 In fact, finding a map from $q_0$ to $q_1$ is the generative modelling problem that we are trying to solve in the first place!
 
-Tong et al. (2023) and Pooladian et al. (2023) propose to approximate the OT coupling $\pi$ by computing such optimal coupling only over each mini-batch of data and noise samples, coined **mini-batch OT** (Fatras et al., 2020). This is scalable as for finite collection of samples the OT problem can be computed with quadratic complexity via the Sinkhorn algorithm (Peyre and Cuturi, 2020). This results in a *joint* distribution $\gamma(i, j)$ over "inputs" $$\big(x_0^{(i)}\big)_{i=1,\dots,B}$$ and "outputs" $$\big(x_1^{(j)}\big)_{j=1,\dots,B}$$ such that the expected distance is (approximately) minimised.  Finally, to construct a minibatch from this $\gamma$ which we can subsequently use for training, we simply sample a new collection of training pairs $(x_0^{(i')}, x_1^{(j')})$ with $(i', j') \sim \gamma$.[^minibatch-ot-sampling-size]
+Tong et al. (2023) and Pooladian et al. (2023) propose to approximate the OT coupling $\pi$ by computing such optimal coupling only over each mini-batch of data and noise samples, coined **mini-batch OT** (Fatras et al., 2020). This is scalable as for finite collection of samples the OT problem can be computed with quadratic complexity via the Sinkhorn algorithm (Peyre and Cuturi, 2020). This results in a *joint* distribution $\gamma(i, j)$ over "inputs" $$\big(x_0^{(i)}\big)_{i=1,\dots,B}$$ and "outputs" $$\big(x_1^{(j)}\big)_{j=1,\dots,B}$$ such that the expected distance is (approximately) minimised.  Finally, to construct a mini-batch from this $\gamma$ which we can subsequently use for training, we can either compute the expectation wrt. $\gamma(i, j)$ by considering all $n^2$ pairs (in practice, this boils down to only considering $n$ disjoint pairs[^mini-batch-ot-deterministic-vs-stochastic]) or sample a new collection of training pairs $(x_0^{(i')}, x_1^{(j')})$ with $(i', j') \sim \gamma$[^mini-batch-ot-sampling-size].
 
 For example, we can apply this to the \eqref{eq:g2g} example from before, which almost completely removes the crossing paths behaviour described earlier, as can be seen in the figure below.
 
@@ -1665,9 +1668,9 @@ Figure 26: \eqref{eq:mog2mog} with uniformly sampled pairings (left) and with OT
 </div>
 </div>
 
-All in all, this seems to be a strict improvement over the naive approach to constructing the mini-batch in the above examples and has been shown to widely improve performance in practice (Tong et al., 2023; Klein et al., 2023).
+All in all, making use of mini-batch OT seems to be a strict improvement over the uniform sampling approach to constructing the mini-batch in the above examples and has been shown to improve practical performance in a wide range of applications (Tong et al., 2023; Klein et al., 2023).
 
-It's worth noting that here we only considered choosing the coupling $\gamma(i, j)$ such that we minimize the expected squared Euclidean distance. This works well in the examples \eqref{eq:g2g} and \eqref{eq:mog2mog}, but we could also replace squared Euclidean distance with some other distance metric when constructing the coupling $\gamma(i, j)$. For example, if we were modeling molecules using CNFs, it might also make sense to pick $(i, j)$ such that $x_0^{(i)}$ and $x_1^{(j)}$ are also rotationally aligned as is done in the work of Klein et al. (2023).
+It's worth noting that in \eqref{eq:ot} we only considered choosing the coupling $\gamma(i, j)$ such that we minimize the expected squared Euclidean distance. This works well in the examples \eqref{eq:g2g} and \eqref{eq:mog2mog}, but we could also replace squared Euclidean distance with some other distance metric when constructing the coupling $\gamma(i, j)$. For example, if we were modeling molecules using CNFs, it might also make sense to pick $(i, j)$ such that $x_0^{(i)}$ and $x_1^{(j)}$ are also rotationally aligned as is done in the work of Klein et al. (2023).
 
 <!-- > [name=Tor] Should probably have some plots or something from the paper here to demonstrate that minibtach OT is worth it. -->
 <!-- > [name=emilem] I agree, I'd suggest  -->
@@ -1825,4 +1828,6 @@ Please cite us as:
 
 [^interpolation]: The top row is with reference $p_0 = \mathcal{N}([-a, 0], I)$ and target $p_1 = (1/2) \mathcal{N}([a, -10], I) + (1 / 2) \mathcal{N}([a, 10], I)$, and the bottom row is the \ref{eq:g2g} example. The left column shows the straight-line solutions for the *marginals* and the right column shows the marginal solutions induced by considering the straight-line *conditional* interpolants.
 
-[^minibatch-ot-sampling-size]: Note the size of the resulting minibatch sampled from $\gamma(i, j)$ does not necessarily have to be of the same size as the minibatch size used to construct the minibatch OT approximation as we can sample from $\gamma$ with replacement, but using the same size is typically done in practice, e.g. Tong et al. (2023).
+[^mini-batch-ot-sampling-size]: Note the size of the resulting mini-batch sampled from $\gamma(i, j)$ does not necessarily have to be of the same size as the mini-batch size used to construct the mini-batch OT approximation as we can sample from $\gamma$ with replacement, but using the same size is typically done in practice, e.g. Tong et al. (2023).
+
+[^mini-batch-ot-deterministic-vs-stochastic]: In mini-batch OT, we only work with the empirical distributions over $x_0^{(i)}$ and $x_1^{(j)}$, i.e. they all have weights $1 / n$, where $n$ is the size of the mini-batch. This means that we can find a $\gamma$ matching the $\inf$ in \eqref{eq:ot} by solving what's referred to as a [linear assignment problem](https://en.wikipedia.org/wiki/Assignment_problem). This results in a sparse matrix with exactly $n$ entries, each then with a weight of $1 / n$. In such a scenario, computing the expectation over the joint $\gamma(i, j)$, which has $n^2$ entries but in this case only $n$ non-zero entries, can be done by only considering $n$ training pairs where every $i$ is involved in exactly one pair and similarly for every $j$. This is usally what's done in practice.
