@@ -828,7 +828,7 @@ $$
 
 where in the $\hlone{\text{first highlighted step}}$ we used \eqref{eq:continuity-cond} and in the $\hltwo{\text{last highlighted step}}$ we used the expression of $u_t(x)$ in \eqref{eq:cf-from-cond-vf}.
 
-The relation between $\phi_t(x_0)$, $\phi_t(x_0 \mid x_1)$ and their induced densities are illustrated in the [Figure X](#figure-flow-matching-diagram) below. And since $\phi_t(x_0)$ and $\phi_t(x_0 \mid x_1)$ are solutions corresponding to the vector fields $u_t(x)$ and $u_t(x \mid x_1)$ with $x(0) = x_0$, [Figure X](#figure-flow-matching-diagram) is equivalent to [Figure Y](#figure-flow-matching-diagram-2).
+The relation between $\phi_t(x_0)$, $\phi_t(x_0 \mid x_1)$ and their induced densities are illustrated in the [Figure 9](#figure-flow-matching-diagram) below. And since $\phi_t(x_0)$ and $\phi_t(x_0 \mid x_1)$ are solutions corresponding to the vector fields $u_t(x)$ and $u_t(x \mid x_1)$ with $x(0) = x_0$, [Figure 9](#figure-flow-matching-diagram) is equivalent to [Figure 10](#figure-flow-matching-diagram-2).
 
 <div markdown="1" class="my-center">
 <div>
@@ -852,7 +852,7 @@ The relation between $\phi_t(x_0)$, $\phi_t(x_0 \mid x_1)$ and their induced den
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 9"
+  name="Figure 10"
   alt="Diagram illustrating the relation between the vector fields $u_t(x_0)$, $u_t(x_0 \mid x_1)$, and their induced marginal and conditional densities."
   ref="flow-matching-diagram-2"
   src="flow-matching/flow-matching-diagram-2.png"
@@ -898,7 +898,7 @@ with $\mu = 10$ unless otherwise specified. We're effectively transforming a Gau
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 9"
+  name="Figure 11"
   alt="Example conditional paths $\phi_t(x_0 \mid x_1)$ of \eqref{eq:g2g} with $\mu = 10$."
   ref="g2g-cond-paths-one-color"
   src="flow-matching/g2g-cond-paths-one-color.png"
@@ -916,7 +916,7 @@ In the end, we're really just interested in learning the *marginal* paths $\phi_
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 10"
+  name="Figure 12"
   alt="Example marginal paths $\phi_t(x_0)$ of \eqref{eq:g2g} with $\mu = 10$."
   ref="g2g-marginal-paths-one-color"
   src="flow-matching/g2g-forward_samples-one-color.png"
@@ -970,7 +970,7 @@ In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in thi
 <div>
 
 <p markdown="1" class="caption">
-Figure 11: Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.
+Figure 13: Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.
 </p>
 <!-- their importance weight $p_t(x \mid x_1) q(x_1) / p_t(x)$. -->
 
@@ -1204,7 +1204,7 @@ Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 12"
+  name="Figure 14"
   alt="Realizations of paths from $p_0$ to $p_1$ following conditional vector fields $u_t(x \mid x_1)$. Paths are highlighted by the sign of the 2nd vector component at time $t=1$."
   ref="g2g-vector-field-samples-cond.png"
   src="flow-matching/g2g-vector-field-samples-cond.png"
@@ -1216,7 +1216,7 @@ Below you can see the difference between $\phi_t(x_0)$ (top figure) and $\phi_t(
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 13"
+  name="Figure 15"
   alt="Paths from $p_0$ to $p_1$ following the true marginal vector field $u_t(x)$. Paths are highlighted by the sign of the 2nd vector component."
   ref="g2g-forward_samples.png"
   src="flow-matching/g2g-forward_samples.png"
@@ -1296,7 +1296,7 @@ result in paths that are quite different from the marginal paths as illustrated 
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 14"
+  name="Figure 16"
   alt="Realizations of conditional paths from $p_0 = p_1 = \mathcal{N}(0, 1)$ for two different $x_1^{(i)}, x_1^{(2)} \sim q$ with conditional vector field given by $u_t(x \mid x_1) = (1 - t) x + t x_1$."
   ref=".png"
   src="flow-matching/g2g-vector-field-samples-cond.png"
@@ -1311,7 +1311,7 @@ result in paths that are quite different from the marginal paths as illustrated 
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 15"
+  name="Figure 17"
   alt="Paths from $p_0$ to $p_1$ following the true marginal vector field $u_t(x)$. Paths are highlighted by the sign of the 2nd vector component."
   ref=".png"
   src="flow-matching/g2g-forward_samples.png"
@@ -1360,7 +1360,7 @@ where we set $\mu = 10$, unless otherwise specified.
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 16"
+  name="Figure 18"
   alt="Realizations of conditional paths following conditional vector field $u_t(x \mid x_1)$ from \eqref{eq:mog2mog}. Paths are highlighted by the sign of the 2nd vector component."
   ref="vector-field-samples-cond.png"
   src="flow-matching/vector-field-samples-cond.png"
@@ -1372,7 +1372,7 @@ where we set $\mu = 10$, unless otherwise specified.
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 17"
+  name="Figure 19"
   alt="Realizations of marginal paths following the marginal vector field $u_t(x)$ from \eqref{eq:mog2mog}. Paths are highlighted by the sign of the 2nd vector component."
   ref="vector-field-samples-marginal.png"
   src="flow-matching/vector-field-samples-marginal.png"
@@ -1398,7 +1398,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 18"
+  name="Figure 20"
   alt="Realizations of conditional paths $\phi_t(x_0 \mid x_1)$ following the conditional vector field $u_t(x \mid x_1)$ for \eqref{eq:mog2mog}."
   ref="vector-field-samples-with-traj.png"
   src="flow-matching/vector-field-samples-with-traj.png"
@@ -1411,7 +1411,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 19"
+  name="Figure 21"
   alt="Variance of conditional vector field over $p_{1|t}$ for both blue and red trajectories for \eqref{eq:mog2mog}."
   ref="variance_cond_vector_field.png"
   src="flow-matching/variance_cond_vector_field.png"
@@ -1489,7 +1489,7 @@ e.g. $\ p(x_t | x_1) = \mathrm{N}(x_t|tx_1, (1-t)^2)$.
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 20"
+  name="Figure 22"
   alt="One sided interpolation. Source: Figure (2) in Albergo et al. (2023)."
   ref="albergo_one_sided.jpg"
   src="flow-matching/albergo_one_sided.jpg"
@@ -1521,7 +1521,7 @@ For instance, a deterministic linear interpolation gives $p(x_t \mid x_0, x_1) =
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-  name="Figure 21"
+  name="Figure 23"
   alt="Two sided interpolation. Source: Figure (2) in Albergo et al. (2023)."
   ref="albergo_two_sided.jpg"
   src="flow-matching/albergo_two_sided.jpg"
@@ -1574,7 +1574,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-    name="Figure 22"
+    name="Figure 24"
     alt="One-sided conditioning (Lipman et al., 2022)"
     ref="trajectory-marginals-vertical.png"
     src="flow-matching/trajectory-marginals-vertical.png"
@@ -1585,7 +1585,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-    name="Figure 23"
+    name="Figure 25"
     alt="Two-sided conditioning (Tong et al., 2023)"
     ref="trajectory-marginals-vertical-cond.png"
     src="flow-matching/trajectory-marginals-vertical-cond.png"
@@ -1596,7 +1596,7 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 <div markdown="1" class="my-image-container">
 
 {% include image.html
-    name="Figure 24"
+    name="Figure 26"
     alt="OT coupling (Tong et al., 2023)"
     ref="trajectory-marginals-vertical-ot.png"
     src="flow-matching/trajectory-marginals-vertical-ot.png"
@@ -1654,7 +1654,7 @@ For example, we can apply this to the \eqref{eq:g2g} example from before, which 
 <div>
 
 <p markdown="1" class="caption">
-Figure 25: \eqref{eq:g2g} with uniformly sampled pairings (left) and with OT pairings (right).
+Figure 27: \eqref{eq:g2g} with uniformly sampled pairings (left) and with OT pairings (right).
 </p>
 
 </div>
@@ -1694,7 +1694,7 @@ We also observe similar behavior when applying this the more complex example \eq
 <div>
 
 <p markdown="1" class="caption">
-Figure 26: \eqref{eq:mog2mog} with uniformly sampled pairings (left) and with OT pairings (right).
+Figure 28: \eqref{eq:mog2mog} with uniformly sampled pairings (left) and with OT pairings (right).
 </p>
 
 </div>
