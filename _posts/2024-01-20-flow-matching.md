@@ -855,7 +855,7 @@ p_0 = \mathcal{N}([-\mu, 0], I) \quad & \text{and} \quad p_1 = \mathcal{N}([+\mu
 \end{split}
 \end{equation}
 $$
-for some $\mu > 0$. We're effectively transforming a Gaussian to another Gaussian using a simple time-linear map, as illustrated in the following figure.
+with $\mu = 10$ unless otherwise specified. We're effectively transforming a Gaussian to another Gaussian using a simple time-linear map, as illustrated in the following figure.
 
 <div markdown="1" class="my-center">
 <div>
@@ -934,7 +934,7 @@ In practice we don't have access to the posterior $p_{1|t}(x_1|x_t)$, but in thi
 <div>
 
 <p markdown="1" class="caption">
-Figure 10: *Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.*
+Figure 10: Marginal vector field $u_t(x)$ vs. conditional vector field $u_t(x \mid x_1)$ for samples $x_1 \sim p_1$. Here $p_0 = p_1 = \mathcal{N}(0, 1)$ and the two trajectories are according to the marginal vector field $u_t(x)$. Samples $x_1$ transparency is given by the IS weight $p_t(x \mid x_1) / p_t(x)$.
 </p>
 <!-- their importance weight $p_t(x \mid x_1) q(x_1) / p_t(x)$. -->
 
@@ -1305,8 +1305,19 @@ where $t \sim \mathcal{U}[0, 1]$, $\hlone{x_1^{(1)}}, \hlthree{x_1^{(2)}} \sim q
 
 In such a scenario, we're attempting to align $u_{\theta}(t, x)$ with two different vector fields whose corresponding paths are impossible under the marginal vector field $u(t, x)$ that we're trying to learn! This fact can lead to increased variance in the gradient estimate, and thus slower convergence.
 
-In slightly more complex scenarios, the situation becomes even more striking. Below we see a nice example from Liu et al. (2022) where our reference and target are two different mixture of Gaussians in 2D. Here we see that marginal paths (bottom figure) end up looking *very* different from the conditional paths (top figure). Indeed, at training time paths may intersect, whilst at sampling time they cannot (due to the uniqueness of the ODE solution). As such we see on the bottom plot that some (marginal) paths are quite curved and would therefore require a greater number of discretisation steps from the ODE solver during inference.
-
+In slightly more complex scenarios, the situation becomes even more striking. Below we see a nice example from Liu et al. (2022) where our reference and target are two different mixture of Gaussians in 2D differing only by the sign of the mean in the x-component. Specifically,
+$$
+\begin{equation}
+\tag{MoG-to-MoG}
+\label{eq:mog2mog}
+\begin{split}
+p_{\hlone{0}} &= (1 / 2)\mathcal{N}([{\hlone{-\mu}}, -\mu], I) + (1 / 2) \mathcal{N}([{\hlone{-\mu}}, +\mu], I) \\
+\text{and} \quad p_{\hltwo{1}} &= (1 / 2) \mathcal{N}([{\hltwo{+\mu}}, -\mu], I) + (1 / 2) \mathcal{N}([{\hltwo{+\mu}}, +\mu], I) \\
+\text{with} \quad \phi_t(x_0 \mid x_1) &= (1 - t) x_0 + t x_1
+\end{split}
+\end{equation}
+$$
+where we set $\mu = 10$, unless otherwise specified.
 
 <div markdown="1" class="my-center">
 <div>
@@ -1316,7 +1327,7 @@ In slightly more complex scenarios, the situation becomes even more striking. Be
 
 {% include image.html
   name="Figure 15"
-  alt="Realizations of conditional paths from $p_0 = \mathcal{N}([-\mu, 0], I)$ to $p_1 = \mathcal{N}([\mu, 0], I)$ following realizations of the conditional vector field $u_t(x \mid x_1)$. Paths are highlighted by the sign of the 2nd vector component."
+  alt="Realizations of conditional paths following conditional vector field $u_t(x \mid x_1)$ from \eqref{eq:mog2mog}. Paths are highlighted by the sign of the 2nd vector component."
   ref="vector-field-samples-cond.png"
   src="flow-matching/vector-field-samples-cond.png"
   width=400
@@ -1328,7 +1339,7 @@ In slightly more complex scenarios, the situation becomes even more striking. Be
 
 {% include image.html
   name="Figure 16"
-  alt="Paths from $p_0 = \mathcal{N}([-\mu, 0], I)$ to $p_1 = \mathcal{N}([\mu, 0], I)$ following the true marginal vector field $u_t(x)$. Paths are highlighted by the sign of the 2nd vector component."
+  alt="Realizations of marginal paths following the marginal vector field $u_t(x)$ from \eqref{eq:mog2mog}. Paths are highlighted by the sign of the 2nd vector component."
   ref="vector-field-samples-marginal.png"
   src="flow-matching/vector-field-samples-marginal.png"
   width=400
@@ -1340,6 +1351,7 @@ In slightly more complex scenarios, the situation becomes even more striking. Be
 </div>
 </div>
 
+Here we see that marginal paths (bottom figure) end up looking *very* different from the conditional paths (top figure). Indeed, at training time paths may intersect, whilst at sampling time they cannot (due to the uniqueness of the ODE solution). As such we see on the bottom plot that some (marginal) paths are quite curved and would therefore require a greater number of discretisation steps from the ODE solver during inference.
 
 We can also see how this leads to a significant variance of the CFM loss estimate for $t \approx 0.5$ in the figure below.
 More generally, samples from the reference distribution which are arbitrarily close to eachothers can be associated with either target modes, leading to high variance in the vector field regression loss.
@@ -1353,7 +1365,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 
 {% include image.html
   name="Figure 17"
-  alt="Realizations of conditional paths from $p_0 = \mathcal{N}([-\mu, 0], I)$ to $p_1 = \mathcal{N}([\mu, 0], I)$ following realizations of the conditional vector field $u_t(x \mid x_1)$."
+  alt="Realizations of conditional paths $\phi_t(x_0 \mid x_1)$ following the conditional vector field $u_t(x \mid x_1)$ for \eqref{eq:mog2mog}."
   ref="vector-field-samples-with-traj.png"
   src="flow-matching/vector-field-samples-with-traj.png"
   width=400
@@ -1366,7 +1378,7 @@ More generally, samples from the reference distribution which are arbitrarily cl
 
 {% include image.html
   name="Figure 18"
-  alt="Variance of conditional vector field over $p_{1|t}$ for both blue and red trajectories."
+  alt="Variance of conditional vector field over $p_{1|t}$ for both blue and red trajectories for \eqref{eq:mog2mog}."
   ref="variance_cond_vector_field.png"
   src="flow-matching/variance_cond_vector_field.png"
   width=400
@@ -1571,11 +1583,91 @@ This OT coupling is illustrated in the right hand side of the figure below, adap
 In practice, we cannot compute the optimal coupling $\pi$ between $x_1 \sim q_1$ and $x_0 \sim q_0$, as algorithms solving this problem are only known for finite distributions.
 In fact, finding a map from $q_0$ to $q_1$ is the generative modelling problem that we are trying to solve in the first place!
 
-Tong et al. (2023) and Pooladian et al. (2023) propose to approximate the OT coupling $\pi$ by computing such optimal coupling only over each mini-batch of data and noise samples, coined **mini-batch OT**. This is scalable as for finite collection of samples the OT problem can be computed with quadratic complexity via the Sinkhorn algorithm (Peyre and Cuturi, 2020). This algorithm returns a permutation $\sigma$ of a random pairing between samples 
-$$
-\{x_0^{(i)}\}_{i=1,\dots,B} \quad\text{and}\quad \{x_1^{(i)}\}_{i=1,\dots,B},
-$$
-such that $\sum_{i,j} \|x_1^{(i)} - x_0^{(\sigma(j))}\|^2$ is minimised (over all potential permutations).
+Tong et al. (2023) and Pooladian et al. (2023) propose to approximate the OT coupling $\pi$ by computing such optimal coupling only over each mini-batch of data and noise samples, coined **mini-batch OT** (Fatras et al., 2020). This is scalable as for finite collection of samples the OT problem can be computed with quadratic complexity via the Sinkhorn algorithm (Peyre and Cuturi, 2020). This results in a *joint* distribution $\gamma(i, j)$ over "inputs" $$\big(x_0^{(i)}\big)_{i=1,\dots,B}$$ and "outputs" $$\big(x_1^{(j)}\big)_{j=1,\dots,B}$$ such that the expected distance is (approximately) minimised.  Finally, to construct a minibatch from this $\gamma$ which we can subsequently use for training, we simply sample a new collection of training pairs $(x_0^{(i')}, x_1^{(j')})$ with $(i', j') \sim \gamma$.[^minibatch-ot-sampling-size]
+
+For example, we can apply this to the \eqref{eq:g2g} example from before, which almost completely removes the crossing paths behaviour described earlier, as can be seen in the figure below.
+
+<div markdown="1" class="my-center">
+<div>
+
+<div markdown="1" class="my-side-by-side">
+
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+  ref="g2g-cond-paths-one-color--ot"
+  src="flow-matching/g2g-cond-paths-one-color.png"
+  width=400
+%}
+
+</div>
+
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+  ref="g2g-cond-paths-one-color-ot--ot"
+  src="flow-matching/g2g-cond-paths-one-color-ot.png"
+  width=400
+%}
+
+</div>
+
+</div>
+
+<div>
+
+<p markdown="1" class="caption">
+Figure 10: \eqref{eq:g2g} with uniformly sampled pairings (left) and with OT pairings (right).
+</p>
+
+</div>
+
+</div>
+</div>
+
+We also observe similar behavior when applying this the more complex example \eqref{eq:mog2mog}, as can be seen in the figure below.
+
+<div markdown="1" class="my-center">
+<div>
+
+<div markdown="1" class="my-side-by-side">
+
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+  ref="g2g-cond-paths-one-color--ot"
+  src="flow-matching/mog2mog-cond-paths-one-color.png"
+  width=400
+%}
+
+</div>
+
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+  ref="g2g-cond-paths-one-color-ot--ot"
+  src="flow-matching/mog2mog-cond-paths-one-color-ot.png"
+  width=400
+%}
+
+</div>
+
+</div>
+
+<div>
+
+<p markdown="1" class="caption">
+Figure 10: \eqref{eq:mog2mog} with uniformly sampled pairings (left) and with OT pairings (right).
+</p>
+
+</div>
+
+</div>
+</div>
+
+All in all, this seems to be a strict improvement over the naive approach to constructing the mini-batch in the above examples and has been shown to widely improve performance in practice (Tong et al., 2023; Klein et al., 2023).
+
+It's worth noting that here we only considered choosing the coupling $\gamma(i, j)$ such that we minimize the expected squared Euclidean distance. This works well in the examples \eqref{eq:g2g} and \eqref{eq:mog2mog}, but we could also replace squared Euclidean distance with some other distance metric when constructing the coupling $\gamma(i, j)$. For example, if we were modeling molecules using CNFs, it might also make sense to pick $(i, j)$ such that $x_0^{(i)}$ and $x_1^{(j)}$ are also rotationally aligned as is done in the work of Klein et al. (2023).
 
 <!-- > [name=Tor] Should probably have some plots or something from the paper here to demonstrate that minibtach OT is worth it. -->
 <!-- > [name=emilem] I agree, I'd suggest  -->
@@ -1732,3 +1824,5 @@ Please cite us as:
 [^2]: We can of course just compute $\nabla \log p_t(x)$ of the $p_t$ induced by $u_t$, but this will generally be ridiculoulsly expensive.
 
 [^interpolation]: The top row is with reference $p_0 = \mathcal{N}([-a, 0], I)$ and target $p_1 = (1/2) \mathcal{N}([a, -10], I) + (1 / 2) \mathcal{N}([a, 10], I)$, and the bottom row is the \ref{eq:g2g} example. The left column shows the straight-line solutions for the *marginals* and the right column shows the marginal solutions induced by considering the straight-line *conditional* interpolants.
+
+[^minibatch-ot-sampling-size]: Note the size of the resulting minibatch sampled from $\gamma(i, j)$ does not necessarily have to be of the same size as the minibatch size used to construct the minibatch OT approximation as we can sample from $\gamma$ with replacement, but using the same size is typically done in practice, e.g. Tong et al. (2023).
