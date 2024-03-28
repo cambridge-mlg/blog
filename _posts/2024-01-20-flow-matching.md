@@ -828,6 +828,40 @@ $$
 
 where in the $\hlone{\text{first highlighted step}}$ we used \eqref{eq:continuity-cond} and in the $\hltwo{\text{last highlighted step}}$ we used the expression of $u_t(x)$ in \eqref{eq:cf-from-cond-vf}.
 
+The relation between $\phi_t(x_0)$, $\phi_t(x_0 \mid x_1)$ and their induced densities are illustrated in the [Figure X](#figure-flow-matching-diagram) below. And since $\phi_t(x_0)$ and $\phi_t(x_0 \mid x_1)$ are solutions corresponding to the vector fields $u_t(x)$ and $u_t(x \mid x_1)$ with $x(0) = x_0$, [Figure X](#figure-flow-matching-diagram) is equivalent to [Figure Y](#figure-flow-matching-diagram-2).
+
+<div markdown="1" class="my-center">
+<div>
+<div markdown="1" class="my-image-container">
+
+
+{% include image.html
+  name="Figure 9"
+  alt="Diagram illustrating the relation between the paths $\phi_t(x_0)$, $\phi_t(x_0 \mid x_1)$, and their induced marginal and conditional densities."
+  ref="flow-matching-diagram"
+  src="flow-matching/flow-matching-diagram.png"
+  width=500
+%}
+
+</div>
+</div>
+</div>
+
+<div markdown="1" class="my-center">
+<div>
+<div markdown="1" class="my-image-container">
+
+{% include image.html
+  name="Figure 9"
+  alt="Diagram illustrating the relation between the vector fields $u_t(x_0)$, $u_t(x_0 \mid x_1)$, and their induced marginal and conditional densities."
+  ref="flow-matching-diagram-2"
+  src="flow-matching/flow-matching-diagram-2.png"
+  width=700
+%}
+
+</div>
+</div>
+</div>
 
 
 <div markdown="1" class="my-info">
