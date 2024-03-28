@@ -973,7 +973,7 @@ $$
 \nabla_\theta \mathcal{L}_{\mathrm{FM}}(\theta) = \nabla_\theta \mathcal{L}_{\mathrm{CFM}}(\theta),
 \end{equation}
 $$
-which implies that we can use ${\mathcal{L}}_{\text{CFM}}$ instead to train the parametric vector field $u_{\theta}$.
+which implies that we can use $${\mathcal{L}}_{\text{CFM}}$$ instead to train the parametric vector field $u_{\theta}$.
 The defer the full proof to the footnote[^CFM], but show the key idea below.
 By developing the squared norm in both losses, we can easily show that the squared terms are equal or independent of $\theta$.
 Let's develop inner product term for ${\mathcal{L}}_{\text{FM}}$ 
