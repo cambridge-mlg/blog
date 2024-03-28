@@ -762,10 +762,10 @@ with $\sigmamin > 0$ small, and for whatever reference $p_0$ we choose, typicall
 
 {% include image.html
   name="Figure 8"
-  alt="Two probability paths for $p_t(x|x_1)$."
+  alt="Two conditional flows $\phi_t(x \mid x_1)$ for two univariate Gaussians."
   ref="heatmap_with_cond_traj-v3"
   src="flow-matching/heatmap_with_cond_traj-v3.png"
-  width=400
+  width=600
 %}
 </div>
 </div>
