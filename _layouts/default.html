@@ -141,7 +141,9 @@
                     }
                     header {
                         height: 100px;
+                    {% unless page.url == '/posts-by-tag' or page.url == '/posts-by-tag/' %}
                         margin-bottom: 0px;
+                    {% endunless %}
                     }
                     .header-tags{
                         text-align: right;
