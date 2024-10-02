@@ -194,7 +194,7 @@
 
             <!-- Main content -->
             <div class="centered">
-                {% unless page.url endswith '/posts-by-tag' %}
+                {% unless page.url == '/posts-by-tag' or page.url == '/posts-by-tag/' %}
                     <div class="header-tags">
                         <a href="{{ site.baseurl }}/posts-by-tag">tags</a>
                     </div>
